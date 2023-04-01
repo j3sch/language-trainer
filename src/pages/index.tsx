@@ -28,7 +28,7 @@ export default function Home() {
         const question = data as string;
         const content = res?.content;
         if (content && content.includes(": '")) {
-          let solution = content.split(": ")[1]!.slice(1, -1);
+          const solution = content.split(": ")[1]!.slice(1, -1);
 
           const newElement = {
             question,
