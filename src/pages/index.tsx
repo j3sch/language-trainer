@@ -17,11 +17,15 @@ export default function Home() {
   const checkAnswer = api.checkAnswer.checkAnswer.useMutation();
   const [history, setHistory] = useState<History[] | null>(null);
   const [isHistoryActive, setIsHistoryActive] = useState<boolean>(false);
+
   function onSubmit() {
     const body = {
       question: data as string,
       answer,
     };
+
+    setAnswer("");
+    refetch();
 
     checkAnswer.mutate(body, {
       onSuccess: (res) => {
@@ -41,12 +45,9 @@ export default function Home() {
           } else {
             setHistory([newElement]);
           }
-
-          refetch();
         }
       },
     });
-    setAnswer("");
   }
 
   function onEnter(event: KeyboardEvent<HTMLInputElement>) {
@@ -73,36 +74,44 @@ export default function Home() {
         <div className="flex w-full max-w-2xl flex-1">
           {history && history.length > 0 && (
             <div className="flex w-full flex-col items-center justify-center">
-              {isHistoryActive &&
-                history?.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex w-full cursor-pointer flex-col space-y-2 rounded-2xl border border-zinc-100 p-6 text-center text-xl text-zinc-600 transition-colors hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400"
-                  >
-                    <span>{item.question}</span>
-                    <span>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: item.answer,
-                        }}
-                      />
-                    </span>
-                    <span>{item.solution}</span>
-                  </div>
-                ))}
-
-              {!isHistoryActive && (
+              {checkAnswer.isLoading ? (
                 <div className="flex w-full cursor-pointer flex-col space-y-2 rounded-2xl border border-zinc-100 p-6 text-center text-xl text-zinc-600 transition-colors hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400">
-                  <span>{history[history.length - 1]!.question}</span>
-                  <span>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: history[history.length - 1]!.answer,
-                      }}
-                    />
-                  </span>
-                  <span>{history[history.length - 1]!.solution}</span>
+                  <span>Checking...</span>
                 </div>
+              ) : (
+                <>
+                  {isHistoryActive &&
+                    history?.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex w-full cursor-pointer flex-col space-y-2 rounded-2xl border border-zinc-100 p-6 text-center text-xl text-zinc-600 transition-colors hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400"
+                      >
+                        <span>{item.question}</span>
+                        <span>
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: item.answer,
+                            }}
+                          />
+                        </span>
+                        <span>{item.solution}</span>
+                      </div>
+                    ))}
+
+                  {!isHistoryActive && (
+                    <div className="flex w-full cursor-pointer flex-col space-y-2 rounded-2xl border border-zinc-100 p-6 text-center text-xl text-zinc-600 transition-colors hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400">
+                      <span>{history[history.length - 1]!.question}</span>
+                      <span>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: history[history.length - 1]!.answer,
+                          }}
+                        />
+                      </span>
+                      <span>{history[history.length - 1]!.solution}</span>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           )}
