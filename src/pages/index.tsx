@@ -4,20 +4,13 @@ import { api } from "~/utils/api";
 import { type KeyboardEvent, useState } from "react";
 import { markWords } from "~/utils/algo";
 import Footer from "~/components/Footer";
-import {
-  ChevronUpIcon,
-  ChevronDownIcon,
-  ArrowsRightLeftIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowsRightLeftIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import LanguageSelect from "~/components/LanguageSelect";
 import TenseSelect from "~/components/TenseSelect";
-
-interface History {
-  question: string;
-  answer: string;
-  solution: string;
-}
+import CompleteHistory from "~/components/CompleteHistory";
+import HistoryPreview from "~/components/HistoryPreview";
+import { History } from "~/types";
 
 export default function Home() {
   const { data, refetch } = api.past.getGerPast.useQuery();
@@ -81,71 +74,38 @@ export default function Home() {
         <div className="flex-1"></div>
         <div className="col flex flex-col items-center md:w-1/2">
           <div className="flex w-full flex-1">
-            {history && history.length > 0 && (
-              <div
-                className={clsx(
-                  isHistoryActive
-                    ? "justify-end space-y-6 py-8"
-                    : "justify-center",
-                  "flex w-full flex-col items-center"
-                )}
-              >
-                {checkAnswer.isLoading ? (
-                  <div className="flex w-full cursor-pointer flex-col space-y-2 rounded-2xl border border-zinc-100 p-6 text-center text-xl text-zinc-600 transition-colors hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400">
-                    <span>Checking...</span>
-                  </div>
-                ) : (
-                  <>
-                    {isHistoryActive && (
-                      <>
-                        {history?.map((item, index) => (
-                          <div
-                            key={index}
-                            className="flex w-full cursor-pointer flex-col space-y-2 rounded-2xl border border-zinc-100 p-6 text-center text-xl text-zinc-600 transition-colors hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400"
-                          >
-                            <span>{item.question}</span>
-                            <span>
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: item.answer,
-                                }}
-                              />
-                            </span>
-                            <span>{item.solution}</span>
-                          </div>
-                        ))}
-                        <ChevronDownIcon
-                          onClick={() => setIsHistoryActive(!isHistoryActive)}
-                          className="h-8 w-8 rounded-md border border-zinc-700 p-1 text-zinc-500 hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400"
+            <div
+              className={clsx(
+                isHistoryActive
+                  ? "justify-end space-y-6 py-8"
+                  : "justify-center",
+                "flex w-full flex-col  items-center"
+              )}
+            >
+              {checkAnswer.isLoading ? (
+                <div className="flex w-full cursor-pointer flex-col space-y-2 rounded-2xl border border-zinc-100 p-6 text-center text-xl text-zinc-600 transition-colors hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400">
+                  <span>Checking...</span>
+                </div>
+              ) : (
+                <>
+                  {history && history.length > 0 && (
+                    <>
+                      {isHistoryActive ? (
+                        <CompleteHistory
+                          history={history}
+                          {...{ isHistoryActive, setIsHistoryActive }}
                         />
-                      </>
-                    )}
-
-                    {!isHistoryActive && (
-                      <div className="flex w-full flex-col items-center space-y-4  ">
-                        {history && history.length > 1 && (
-                          <ChevronUpIcon
-                            onClick={() => setIsHistoryActive(!isHistoryActive)}
-                            className="h-8 w-8 rounded-md border border-zinc-700 p-1 text-zinc-500 hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400"
-                          />
-                        )}
-                        <div className="flex w-full cursor-pointer flex-col space-y-2 rounded-2xl border border-zinc-100 p-6 text-center text-xl text-zinc-600 transition-colors hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400">
-                          <span>{history[history.length - 1]!.question}</span>
-                          <span>
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: history[history.length - 1]!.answer,
-                              }}
-                            />
-                          </span>
-                          <span>{history[history.length - 1]!.solution}</span>
-                        </div>
-                      </div>
-                    )}
-                  </>
-                )}
-              </div>
-            )}
+                      ) : (
+                        <HistoryPreview
+                          history={history}
+                          {...{ isHistoryActive, setIsHistoryActive }}
+                        />
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+            </div>
           </div>
           {!isHistoryActive && (
             <>
@@ -170,21 +130,23 @@ export default function Home() {
           )}
         </div>
         <div className="mx-12 flex flex-1 items-center justify-center">
-          <div className="flex w-full max-w-2xl flex-col space-y-5">
-            <div className="flex w-full columns-3 items-center">
-              <div className="basis-2/5">
-                <LanguageSelect defaultValue="German" />
-              </div>
-              <div className="flex basis-1/5 justify-center">
-                <ArrowsRightLeftIcon className="h-10 w-10 rounded-md border border-zinc-700 p-2 text-zinc-500 hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:bg-zinc-800/40 dark:text-zinc-400" />
-              </div>
+          {!isHistoryActive && (
+            <div className="flex w-full max-w-2xl flex-col space-y-5">
+              <div className="flex w-full columns-3 items-center">
+                <div className="basis-2/5">
+                  <LanguageSelect defaultValue="German" />
+                </div>
+                <div className="flex basis-1/5 justify-center">
+                  <ArrowsRightLeftIcon className="h-10 w-10 rounded-md border border-zinc-700 p-2 text-zinc-500 hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:bg-zinc-800/40 dark:text-zinc-400" />
+                </div>
 
-              <div className="basis-2/5">
-                <LanguageSelect defaultValue="English" />
+                <div className="basis-2/5">
+                  <LanguageSelect defaultValue="English" />
+                </div>
               </div>
+              <TenseSelect />
             </div>
-            <TenseSelect />
-          </div>
+          )}
         </div>
       </div>
     </>
