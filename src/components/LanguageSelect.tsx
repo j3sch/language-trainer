@@ -8,16 +8,24 @@ import { clsx } from "clsx";
 import React from "react";
 import Button from "./Button";
 import ReactCountryFlag from "react-country-flag";
+import useTranslation from "next-translate/useTranslation";
 
 interface Props {
   defaultValue: string;
+  value: string;
+  onValueChange: (value: string) => void;
 }
 
 export default function LanguageSelect(props: Props) {
-  const { defaultValue } = props;
+  const { defaultValue, onValueChange, value } = props;
+  const { t } = useTranslation("menu");
 
   return (
-    <SelectPrimitive.Root defaultValue={defaultValue}>
+    <SelectPrimitive.Root
+      defaultValue={defaultValue}
+      value={value}
+      onValueChange={onValueChange}
+    >
       <SelectPrimitive.Trigger asChild aria-label="Language">
         <Button>
           <SelectPrimitive.Value />
@@ -32,21 +40,6 @@ export default function LanguageSelect(props: Props) {
         </SelectPrimitive.ScrollUpButton>
         <SelectPrimitive.Viewport className="w-full rounded-lg bg-white p-2 shadow-lg dark:bg-zinc-800">
           <SelectPrimitive.Group>
-            {/* German */}
-            <SelectPrimitive.Item
-              value="German"
-              className={clsx(
-                "relative flex items-center rounded-md px-8 py-2 text-sm font-medium text-zinc-700 focus:bg-zinc-100 dark:text-zinc-300 dark:focus:bg-zinc-900",
-                "radix-disabled:opacity-50",
-                "select-none focus:outline-none"
-              )}
-            >
-              <ReactCountryFlag countryCode="DE" className="mr-1.5" />
-              <SelectPrimitive.ItemText>German</SelectPrimitive.ItemText>
-              <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
-                <CheckIcon />
-              </SelectPrimitive.ItemIndicator>
-            </SelectPrimitive.Item>
             {/* English */}
             <SelectPrimitive.Item
               value="English"
@@ -57,7 +50,7 @@ export default function LanguageSelect(props: Props) {
               )}
             >
               <ReactCountryFlag countryCode="US" className="mr-1.5" />
-              <SelectPrimitive.ItemText>English</SelectPrimitive.ItemText>
+              <SelectPrimitive.ItemText>{t`english`}</SelectPrimitive.ItemText>
               <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
@@ -72,12 +65,28 @@ export default function LanguageSelect(props: Props) {
               )}
             >
               <ReactCountryFlag countryCode="FR" className="mr-1.5" />
-              <SelectPrimitive.ItemText>French</SelectPrimitive.ItemText>
+              <SelectPrimitive.ItemText>{t`french`}</SelectPrimitive.ItemText>
               <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
             </SelectPrimitive.Item>
-            {/* Spanish */}
+            {/* German */}
+            <SelectPrimitive.Item
+              value="German"
+              className={clsx(
+                "relative flex items-center rounded-md px-8 py-2 text-sm font-medium text-zinc-700 focus:bg-zinc-100 dark:text-zinc-300 dark:focus:bg-zinc-900",
+                "radix-disabled:opacity-50",
+                "select-none focus:outline-none"
+              )}
+            >
+              <ReactCountryFlag countryCode="DE" className="mr-1.5" />
+              <SelectPrimitive.ItemText>{t`german`}</SelectPrimitive.ItemText>
+              <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
+                <CheckIcon />
+              </SelectPrimitive.ItemIndicator>
+            </SelectPrimitive.Item>
+
+            {/* Spanish
             <SelectPrimitive.Item
               value="Spanish"
               className={clsx(
@@ -92,7 +101,7 @@ export default function LanguageSelect(props: Props) {
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
             </SelectPrimitive.Item>
-            {/* Italian */}
+             Italian 
             <SelectPrimitive.Item
               value="Italian"
               className={clsx(
@@ -107,7 +116,7 @@ export default function LanguageSelect(props: Props) {
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
             </SelectPrimitive.Item>
-            {/* Dutch */}
+            Dutch
             <SelectPrimitive.Item
               value="Dutch"
               className={clsx(
@@ -122,7 +131,7 @@ export default function LanguageSelect(props: Props) {
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
             </SelectPrimitive.Item>
-            {/* Portuguese */}
+            Portuguese
             <SelectPrimitive.Item
               value="Portuguese"
               className={clsx(
@@ -136,7 +145,7 @@ export default function LanguageSelect(props: Props) {
               <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
-            </SelectPrimitive.Item>
+            </SelectPrimitive.Item> */}
           </SelectPrimitive.Group>
         </SelectPrimitive.Viewport>
         <SelectPrimitive.ScrollDownButton className="flex items-center justify-center text-zinc-700 dark:text-zinc-300">

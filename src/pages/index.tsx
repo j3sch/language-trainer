@@ -18,6 +18,9 @@ export default function Home() {
   const checkAnswer = api.checkAnswer.checkAnswer.useMutation();
   const [history, setHistory] = useState<History[] | null>(null);
   const [isHistoryActive, setIsHistoryActive] = useState<boolean>(false);
+  const [questionLanguage, setQuestionLanguage] = useState<string>("German");
+  const [answerLanguage, setAnswerLanguage] = useState<string>("English");
+  const [tense, setTense] = useState<string>("random");
 
   function onSubmit() {
     const body = {
@@ -61,6 +64,12 @@ export default function Home() {
     if (answer && data) {
       onSubmit();
     }
+  }
+
+  function switchLanguage() {
+    const questionLanguageState = questionLanguage;
+    setQuestionLanguage(answerLanguage);
+    setAnswerLanguage(questionLanguageState);
   }
 
   return (
@@ -124,7 +133,6 @@ export default function Home() {
                   </>
                 )}
               </div>
-
               <Footer />
             </>
           )}
@@ -134,14 +142,25 @@ export default function Home() {
             <div className="flex w-full max-w-2xl flex-col space-y-5">
               <div className="flex w-full columns-3 items-center">
                 <div className="basis-2/5">
-                  <LanguageSelect defaultValue="German" />
+                  <LanguageSelect
+                    defaultValue="German"
+                    value={questionLanguage}
+                    onValueChange={(v) => setQuestionLanguage(v)}
+                  />
                 </div>
                 <div className="flex basis-1/5 justify-center">
-                  <ArrowsRightLeftIcon className="h-10 w-10 rounded-md border border-zinc-700 p-2 text-zinc-500 hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:bg-zinc-800/40 dark:text-zinc-400" />
+                  <ArrowsRightLeftIcon
+                    onClick={switchLanguage}
+                    className="h-10 w-10 rounded-md border border-zinc-700 p-2 text-zinc-500 hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:bg-zinc-800/40 dark:text-zinc-400"
+                  />
                 </div>
 
                 <div className="basis-2/5">
-                  <LanguageSelect defaultValue="English" />
+                  <LanguageSelect
+                    defaultValue="English"
+                    value={answerLanguage}
+                    onValueChange={(v) => setAnswerLanguage(v)}
+                  />
                 </div>
               </div>
               <TenseSelect />

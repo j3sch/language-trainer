@@ -10,7 +10,7 @@ import Button from "./Button";
 import useTranslation from "next-translate/useTranslation";
 
 export default function TenseSelect() {
-  const { t } = useTranslation("tenses");
+  const { t } = useTranslation("menu");
   const contentList: string[] = t("tenses", {}, { returnObjects: true });
 
   return (
