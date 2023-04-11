@@ -28,7 +28,8 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "src/utils/algo.js"
+    "src/utils/algo.js",
+    "next.config.js"
   ],
   "exclude": ["node_modules"]
 }
