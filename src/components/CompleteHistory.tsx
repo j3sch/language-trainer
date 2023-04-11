@@ -1,5 +1,6 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { History } from "~/types";
+import SolutionBox from "./SolutionBox";
 
 interface Props {
   isHistoryActive: boolean;
@@ -12,21 +13,8 @@ export default function CompleteHistory(props: Props) {
 
   return (
     <>
-      {history?.map((item, index) => (
-        <div
-          key={index}
-          className="flex w-full cursor-pointer flex-col space-y-2 rounded-2xl border border-zinc-100 p-6 text-center text-xl text-zinc-600 transition-colors hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:text-zinc-400"
-        >
-          <span>{item.question}</span>
-          <span>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: item.answer,
-              }}
-            />
-          </span>
-          <span>{item.solution}</span>
-        </div>
+      {history?.map((item) => (
+        <SolutionBox key={item.question} historyItem={item} />
       ))}
       <ChevronDownIcon
         onClick={() => setIsHistoryActive(!isHistoryActive)}
