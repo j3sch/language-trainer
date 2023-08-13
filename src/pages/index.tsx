@@ -11,6 +11,7 @@ import TenseSelect from "~/components/TenseSelect";
 import CompleteHistory from "~/components/CompleteHistory";
 import HistoryPreview from "~/components/HistoryPreview";
 import { History } from "~/types";
+import { isResTypeCorrect } from "~/server/utils/isResTypeCorrect";
 
 export default function Home() {
   const { data, refetch } = api.past.getGerPast.useQuery();
@@ -21,6 +22,7 @@ export default function Home() {
   const [questionLanguage, setQuestionLanguage] = useState<string>("German");
   const [answerLanguage, setAnswerLanguage] = useState<string>("English");
   const [tense, setTense] = useState<string>("random");
+  const [showExplanation, setShowExplanation] = useState<boolean>(false);
 
   function onSubmit() {
     const body = {
@@ -32,9 +34,10 @@ export default function Home() {
     refetch();
 
     checkAnswer.mutate(body, {
-      onSuccess: (res) => {
-        const question = data as string;
-        const content = res?.content;
+      onSuccess: (res, variables) => {
+        if (!isResTypeCorrect(res)) return;
+        const { content } = res;
+        const { question } = variables;
         if (content && content.includes(": '")) {
           const solution = content.split(": ")[1]!.slice(1, -1);
 

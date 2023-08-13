@@ -56,7 +56,7 @@ export default function LanguageSelect(props: Props) {
               </SelectPrimitive.ItemIndicator>
             </SelectPrimitive.Item>
             {/* French */}
-            <SelectPrimitive.Item
+            {/* <SelectPrimitive.Item
               value="French"
               className={clsx(
                 "relative flex items-center rounded-md px-8 py-2 text-sm font-medium text-zinc-700 focus:bg-zinc-100 dark:text-zinc-300 dark:focus:bg-zinc-900",
@@ -69,7 +69,7 @@ export default function LanguageSelect(props: Props) {
               <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
-            </SelectPrimitive.Item>
+            </SelectPrimitive.Item> */}
             {/* German */}
             <SelectPrimitive.Item
               value="German"
@@ -86,8 +86,8 @@ export default function LanguageSelect(props: Props) {
               </SelectPrimitive.ItemIndicator>
             </SelectPrimitive.Item>
 
-            {/* Spanish
-            <SelectPrimitive.Item
+            {/* Spanish */}
+            {/* <SelectPrimitive.Item
               value="Spanish"
               className={clsx(
                 "relative flex items-center rounded-md px-8 py-2 text-sm font-medium text-zinc-700 focus:bg-zinc-100 dark:text-zinc-300 dark:focus:bg-zinc-900",
@@ -100,8 +100,8 @@ export default function LanguageSelect(props: Props) {
               <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
-            </SelectPrimitive.Item>
-             Italian 
+            </SelectPrimitive.Item> */}
+            {/* Italian 
             <SelectPrimitive.Item
               value="Italian"
               className={clsx(
