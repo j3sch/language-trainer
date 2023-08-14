@@ -8,6 +8,27 @@
       "when": 1687584095750,
       "tag": "0000_red_brood",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1692016152236,
+      "tag": "0001_cultured_husk",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1692016205957,
+      "tag": "0002_young_the_professor",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1692016371233,
+      "tag": "0003_sparkling_bug",
+      "breakpoints": true
     }
   ]
 }

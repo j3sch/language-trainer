@@ -1,4 +1,4 @@
-import { AppProps, type AppType } from 'next/app'
+import { AppProps } from 'next/app'
 
 import { api } from 'src/utils/api'
 import { createPagesBrowserClient, type Session } from '@supabase/auth-helpers-nextjs'
@@ -6,11 +6,27 @@ import { SessionContextProvider } from '@supabase/auth-helpers-react'
 
 import '~/styles/globals.css'
 import Head from 'next/head'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { getUser } from '~/utils/supabase'
+import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | null }>) {
   const [supabaseClient] = useState(() => createPagesBrowserClient())
+  const { push, pathname } = useRouter()
 
+  useEffect(() => {
+    const isSignIn = async () => {
+      const { user, error } = await getUser()
+     
+      if (user && (pathname === '/sign-in' || pathname === '/sign-up')) {
+        push('/')
+      } else if (!user) {
+        push('/sign-in')
+      }
+    }
+    isSignIn()
+  }, [])
+  
   return (
     <>
       <Head>

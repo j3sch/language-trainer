@@ -2,6 +2,8 @@
   "locales": ["en", "de"],
   "defaultLocale": "de",
   "pages": {
-    "/": ["settings"]
+    "/": ["settings"],
+    "/sign-in": ["auth"],
+    "/sign-up": ["auth"]
   }
 }

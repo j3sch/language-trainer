@@ -1,6 +1,6 @@
 import TranslateInput from 'src/components/TranslateInput'
 import { api } from 'src/utils/api'
-import { type KeyboardEvent, useState } from 'react'
+import { type KeyboardEvent, useState, useEffect } from 'react'
 import { markWords } from 'src/utils/algo'
 import Footer from 'src/components/Footer'
 import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline'
@@ -12,10 +12,11 @@ import HistoryPreview from 'src/components/HistoryPreview'
 import { History } from 'src/types'
 import { isResTypeCorrect } from 'src/utils/isResTypeCorrect'
 import { LANGUAGES } from 'src/types/languages'
+import { getUser } from '~/utils/supabase'
 
 export default function Home() {
   const [answer, setAnswer] = useState<string>('')
-  const checkAnswer = api.translations.saveAnswer.useMutation()
+  const saveAnswer = api.translations.saveAnswer.useMutation()
   const [history, setHistory] = useState<History[] | null>(null)
   const [isHistoryActive, setIsHistoryActive] = useState<boolean>(false)
   const [questionLanguage, setQuestionLanguage] = useState<LANGUAGES>('German')
@@ -25,6 +26,7 @@ export default function Home() {
     langQ: questionLanguage,
     langA: answerLanguage,
   })
+  
 
   const [tense, setTense] = useState<string>('random')
   const [showExplanation, setShowExplanation] = useState<boolean>(false)
@@ -46,7 +48,7 @@ export default function Home() {
     setAnswer('')
     refetch()
 
-    checkAnswer.mutate(body, {
+    saveAnswer.mutate(body, {
       onSuccess: (res: any) => {
         if (!isResTypeCorrect(res)) console.error(res)
       },
