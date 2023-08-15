@@ -1,11 +1,11 @@
 import tranlations from '~/data/translations.json'
-import { router, publicProcedure } from '~/trpc'
+import { router, protectedProcedure } from '~/trpc'
 import { LANGUAGES } from '~/types/languages'
 import { z } from 'zod'
 import { histories } from '~/db/schema'
 
 export const translationsRouter = router({
-  getRandomSentence: publicProcedure
+  getRandomSentence: protectedProcedure
     .input(z.object({ langQ: z.string(), langA: z.string() }))
     .query(({ input }) => {
       const sentenceObject = tranlations[Math.floor(tranlations.length * Math.random())]
@@ -14,7 +14,7 @@ export const translationsRouter = router({
         solution: sentenceObject![input.langA as LANGUAGES],
       }
     }),
-  saveAnswer: publicProcedure
+  saveAnswer: protectedProcedure
     .input(
       z.object({
         question: z.string(),
