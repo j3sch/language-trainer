@@ -26,7 +26,6 @@ export default function Home() {
     langQ: questionLanguage,
     langA: answerLanguage,
   })
-  
 
   const [tense, setTense] = useState<string>('random')
   const [showExplanation, setShowExplanation] = useState<boolean>(false)

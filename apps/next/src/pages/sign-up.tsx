@@ -1,34 +1,51 @@
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { signIn } from "~/utils/supabase"
+import { api } from "~/utils/api"
+import { signIn, signUp } from "~/utils/supabase"
+import { MouseEvent } from "react"
 
-export default function SignIn() {
-    const { push } = useRouter()
+export default function SignUp() {
+  const { push } = useRouter()
+  const createUser = api.user.create.useMutation()
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
     
-    const handleEmailSignInWithPress = async () => {
-    const { error } = await signIn(email, password)
+     
+  
+  async function handleEmailSignInWithPress(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    const { user, error } = await signUp(email, password)
+
+    if (!user?.email) return;
+    
+    createUser.mutate({
+      email: user.email,
+      id: user.id,
+    }, {
+      onSuccess: (res: any) => {
+        console.log("res", res)
+      },
+    })
 
     if (error) {
-        console.error(error)
-      
+      console.error(error)
+    
       return
     }
     push('/')
   }
-    
+  
   return (
     <>
       {/*
-        This example requires updating your template:
+      This example requires updating your template:
 
-        ```
-        <html class="h-full bg-gray-50">
-        <body class="h-full">
-        ```
-      */}
+      ```
+      <html class="h-full bg-gray-50">
+      <body class="h-full">
+      ```
+    */}
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -147,7 +164,7 @@ export default function SignIn() {
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{' '}
             <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                Sign up now
+              Sign up now
             </a>
           </p>
         </div>

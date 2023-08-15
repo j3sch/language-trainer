@@ -15,10 +15,11 @@ export default function TranslateInput(props: Props) {
       <div className="relative flex w-full flex-grow items-stretch focus-within:z-10">
         <input
           type="text"
-          name="email"
-          id="email"
+          name="answer"
+          id="answer"
           className="text-md block w-full rounded-none rounded-l-md border-0 py-3 pl-6 text-black ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
-          placeholder="John Smith"
+          placeholder="Your Answer"
+          autoComplete="off"
           onKeyDown={onSubmit}
           onChange={(e) => {
             setAnswer(e.target.value);

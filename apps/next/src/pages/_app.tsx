@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | nu
      
       if (user && (pathname === '/sign-in' || pathname === '/sign-up')) {
         push('/')
-      } else if (!user) {
+      } else if (!user && !(pathname === '/sign-in' || pathname === '/sign-up')) {
         push('/sign-in')
       }
     }
