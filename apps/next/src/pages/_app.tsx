@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | nu
   useEffect(() => {
     const isSignIn = async () => {
       const { user, error } = await getUser()
-     
+
       if (user && (pathname === '/sign-in' || pathname === '/sign-up')) {
         push('/')
       } else if (!user && !(pathname === '/sign-in' || pathname === '/sign-up')) {
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | nu
     }
     isSignIn()
   }, [])
-  
+
   return (
     <>
       <Head>
@@ -38,7 +38,9 @@ function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | nu
         supabaseClient={supabaseClient}
         initialSession={pageProps.initialSession}
       >
-        <Component {...pageProps} />
+        <div className="flex h-screen w-screen bg-zinc-900">
+          <Component {...pageProps} />
+        </div>
       </SessionContextProvider>
     </>
   )

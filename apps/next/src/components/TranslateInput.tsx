@@ -1,14 +1,14 @@
-import { type KeyboardEvent, type MouseEvent } from "react";
+import { type KeyboardEvent, type MouseEvent } from 'react'
 
 interface Props {
-  onSubmit: (event: KeyboardEvent<HTMLInputElement>) => void;
-  answer: string;
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
-  setAnswer: (answer: string) => void;
+  onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void
+  answer: string
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void
+  setAnswer: (answer: string) => void
 }
 
 export default function TranslateInput(props: Props) {
-  const { onSubmit, onClick, setAnswer } = props;
+  const { onKeyDown, onClick, setAnswer } = props
 
   return (
     <div className="flex w-full rounded-md shadow-sm">
@@ -20,9 +20,9 @@ export default function TranslateInput(props: Props) {
           className="text-md block w-full rounded-none rounded-l-md border-0 py-3 pl-6 text-black ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
           placeholder="Your Answer"
           autoComplete="off"
-          onKeyDown={onSubmit}
+          onKeyDown={onKeyDown}
           onChange={(e) => {
-            setAnswer(e.target.value);
+            setAnswer(e.target.value)
           }}
           value={props.answer}
         />
@@ -35,5 +35,5 @@ export default function TranslateInput(props: Props) {
         Sumbit
       </button>
     </div>
-  );
+  )
 }
