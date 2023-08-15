@@ -1,15 +1,15 @@
 const navigation = {
   main: [
-    { name: "About", href: "#" },
-    { name: "Imprint", href: "#" },
-    { name: "Privacy", href: "#" },
+    { name: 'About', href: '#' },
+    { name: 'Imprint', href: '#' },
+    { name: 'Privacy', href: '#' },
   ],
   social: [],
-};
+}
 
 export default function Footer() {
   return (
-    <footer className="flex flex-1 flex-col justify-end bg-white dark:bg-zinc-900">
+    <footer className="flex flex-1 flex-col justify-end bg-zinc-50 dark:bg-zinc-900">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-6 sm:py-8 lg:px-8">
         <nav
           className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
@@ -31,5 +31,5 @@ export default function Footer() {
         </p>
       </div>
     </footer>
-  );
+  )
 }
