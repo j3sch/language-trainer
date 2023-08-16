@@ -8,7 +8,6 @@ import { clsx } from 'clsx'
 import LanguageSelect from 'src/components/LanguageSelect'
 import TenseSelect from 'src/components/TenseSelect'
 import CompleteHistory from 'src/components/CompleteHistory'
-import HistoryPreview from 'src/components/HistoryPreview'
 import { History } from 'src/types'
 import { isResTypeCorrect } from 'src/utils/isResTypeCorrect'
 import { LANGUAGES } from 'src/types/languages'
@@ -17,6 +16,7 @@ import Settings from '~/components/Settings'
 import { useAnswerLanguage, useQuestionLanguage } from '~/atoms/settings'
 import SidebarNavigation from '~/components/SidebarNavigation'
 import SolutionBox from '~/components/SolutionBox'
+import { useAtom } from 'jotai'
 
 export default function Home() {
 	const [answer, setAnswer] = useState<string>('')
@@ -68,12 +68,7 @@ export default function Home() {
 			</div>
 			<div className="col flex flex-col items-center md:w-1/2 ml-8">
 				<div className="flex w-full flex-1">
-					<div
-						className={clsx(
-							isHistoryActive ? 'justify-end space-y-6 py-8' : 'justify-center',
-							'flex w-full flex-col  items-center',
-						)}
-					>
+					<div className="justify-center flex w-full flex-col  items-center">
 						{previousTask && <SolutionBox historyItem={previousTask} />}
 					</div>
 				</div>

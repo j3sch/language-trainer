@@ -26,23 +26,18 @@ export default function Settings(props: Props) {
 		refetch()
 	}
 
-	function onSignOut() {
-		signOut()
-		push('/sign-in')
-	}
-
 	return (
 		<div className="mx-8 xl:mx-12 flex-col flex flex-1">
 			{!isHistoryActive && (
 				<>
 					<div className="flex justify-end h-24 items-end">
-						<button
+						{/* <button
 							onClick={onSignOut}
 							className="items-center h-10 flex flex-row space-x-2 rounded-md border border-zinc-700 pl-3 p-2 text-zinc-500 hover:border-white/10 hover:bg-white/5 dark:border-zinc-700/40 dark:bg-zinc-800/40 dark:text-zinc-400"
 						>
 							<span>Logout</span>
 							<ArrowRightOnRectangleIcon className="h-10 py-2" />
-						</button>
+						</button> */}
 					</div>
 
 					<div className="flex w-full justify-center h-full max-w-2xl flex-col space-y-5">
