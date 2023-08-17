@@ -1,9 +1,9 @@
 import { ArrowRightOnRectangleIcon, ArrowsRightLeftIcon } from '@heroicons/react/24/outline'
 import LanguageSelect from 'src/components/LanguageSelect'
 import TenseSelect from 'src/components/TenseSelect'
-import { signOut } from '~/utils/supabase'
-import { useAnswerLanguage, useQuestionLanguage } from '~/atoms/settings'
-import { useUser } from '~/utils/supabase/auth'
+import { signOut } from '@/utils/supabase'
+import { useAnswerLanguage, useQuestionLanguage } from '@/atoms/settings'
+import { useUser } from '@/utils/supabase/auth'
 import { useRouter } from 'next/router'
 
 interface Props {

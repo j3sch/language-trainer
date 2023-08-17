@@ -1,8 +1,8 @@
-import tranlations from '~/data/translations.json'
-import { router, protectedProcedure } from '~/trpc'
-import { LANGUAGES } from '~/types/languages'
+import tranlations from '../data/translations.json'
+import { router, protectedProcedure } from '../trpc'
+import { LANGUAGES } from '../types/languages'
 import { z } from 'zod'
-import { histories, users } from '~/db/schema'
+import { histories, users } from '../db/schema'
 import { eq } from 'drizzle-orm'
 
 export const translationsRouter = router({

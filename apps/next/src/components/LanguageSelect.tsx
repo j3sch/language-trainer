@@ -5,7 +5,7 @@ import React from 'react'
 import Button from './Button'
 import ReactCountryFlag from 'react-country-flag'
 import useTranslation from 'next-translate/useTranslation'
-import { LANGUAGES } from '~/types/languages'
+import { LANGUAGES } from '@/types/languages'
 
 interface Props {
 	defaultValue: string

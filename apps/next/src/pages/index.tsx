@@ -3,20 +3,12 @@ import { api } from 'src/utils/api'
 import { type KeyboardEvent, type MouseEvent, useState, useEffect } from 'react'
 import { markWords } from 'src/utils/algo'
 import Footer from 'src/components/Footer'
-import { ArrowRightOnRectangleIcon, ArrowsRightLeftIcon } from '@heroicons/react/24/outline'
-import { clsx } from 'clsx'
-import LanguageSelect from 'src/components/LanguageSelect'
-import TenseSelect from 'src/components/TenseSelect'
-import CompleteHistory from 'src/components/CompleteHistory'
 import { History } from 'src/types'
 import { isResTypeCorrect } from 'src/utils/isResTypeCorrect'
-import { LANGUAGES } from 'src/types/languages'
-import { getUser } from '~/utils/supabase'
-import Settings from '~/components/Settings'
-import { useAnswerLanguage, useQuestionLanguage } from '~/atoms/settings'
-import SidebarNavigation from '~/components/SidebarNavigation'
-import SolutionBox from '~/components/SolutionBox'
-import { useAtom } from 'jotai'
+import Settings from '@/components/Settings'
+import { useAnswerLanguage, useQuestionLanguage } from '@/atoms/settings'
+import SidebarNavigation from '@/components/SidebarNavigation'
+import SolutionBox from '@/components/SolutionBox'
 
 export default function Home() {
 	const [answer, setAnswer] = useState<string>('')
@@ -35,7 +27,7 @@ export default function Home() {
 	const [showExplanation, setShowExplanation] = useState<boolean>(false)
 
 	function onSubmit() {
-		if (!(answer || data)) return
+		if (!(answer && data)) return
 
 		const body = {
 			question: data.question,

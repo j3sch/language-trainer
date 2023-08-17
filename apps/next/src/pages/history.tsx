@@ -11,12 +11,10 @@ import CompleteHistory from 'src/components/CompleteHistory'
 import { History } from 'src/types'
 import { isResTypeCorrect } from 'src/utils/isResTypeCorrect'
 import { LANGUAGES } from 'src/types/languages'
-import { getUser } from '~/utils/supabase'
-import Settings from '~/components/Settings'
-import { useAnswerLanguage, useQuestionLanguage } from '~/atoms/settings'
-import SidebarNavigation from '~/components/SidebarNavigation'
-import SolutionBox from '~/components/SolutionBox'
-import { useAtom } from 'jotai'
+import Settings from '@/components/Settings'
+import { useAnswerLanguage, useQuestionLanguage } from '@/atoms/settings'
+import SidebarNavigation from '@/components/SidebarNavigation'
+import SolutionBox from '@/components/SolutionBox'
 
 export default function History() {
 	const { data, refetch } = api.translations.getHistories.useQuery()
@@ -28,7 +26,7 @@ export default function History() {
 			</div>
 			<div className="flex flex-col items-center my-20 mx-64">
 				<div className="space-y-8 flex flex-col">
-					{data && data.map((history: History) => <SolutionBox key={history.id} historyItem={history} />)}
+					{data && data.map((values) => <SolutionBox key={values.id} historyItem={values} />)}
 				</div>
 			</div>
 			<Footer />

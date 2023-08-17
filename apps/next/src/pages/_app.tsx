@@ -4,14 +4,14 @@ import { api } from 'src/utils/api'
 import { createPagesBrowserClient, type Session } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 
-import '~/styles/globals.css'
+import '@/styles/globals.css'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import { getUser } from '~/utils/supabase'
+import { getUser } from '@/utils/supabase'
 import { useRouter } from 'next/router'
 import { ThemeProvider } from 'next-themes'
-import { useUser } from '~/utils/supabase/auth'
-import { useSupabaseUser, useUserLoading } from '~/atoms/auth'
+import { useUser } from '@/utils/supabase/auth'
+import { useSupabaseUser, useUserLoading } from '@/atoms/auth'
 
 function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | null }>) {
 	const [supabaseClient] = useState(() => createPagesBrowserClient())
