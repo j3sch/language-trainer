@@ -1,4 +1,4 @@
-import { History } from '../types'
+import { type History } from '../types'
 import { LightBulbIcon, StarIcon } from '@heroicons/react/24/outline'
 import PopoverInfo from './Popover'
 
