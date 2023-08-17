@@ -5,36 +5,36 @@ import type { AppRouter } from '@lt/api/src/router'
 import { supabase } from './supabase'
 
 export const api = createTRPCNext<AppRouter>({
-  config() {
-    return {
-      links: [
-        loggerLink({
-          enabled: (opts) =>
-            process.env.NODE_ENV === 'development' ||
-            (opts.direction === 'down' && opts.result instanceof Error),
-        }),
-        httpBatchLink({
-          async headers() {
-            const { data } = await supabase.auth.getSession()
-            const token = data?.session?.access_token
+	config() {
+		return {
+			links: [
+				loggerLink({
+					enabled: (opts) =>
+						process.env.NODE_ENV === 'development' ||
+						(opts.direction === 'down' && opts.result instanceof Error),
+				}),
+				httpBatchLink({
+					async headers() {
+						const { data } = await supabase.auth.getSession()
+						const token = data?.session?.access_token
 
-            return {
-              Authorization: token ? `Bearer ${token}` : undefined,
-            }
-          },
-          url: `${process.env.NEXT_PUBLIC_API_URL}/trpc`,
-        }),
-      ],
-      queryClientConfig: {
-        defaultOptions: {
-          queries: {
-            refetchOnWindowFocus: false,
-          },
-        },
-      },
-    }
-  },
-  ssr: false,
+						return {
+							Authorization: token ? `Bearer ${token}` : undefined,
+						}
+					},
+					url: `${process.env.NEXT_PUBLIC_API_URL}/trpc`,
+				}),
+			],
+			queryClientConfig: {
+				defaultOptions: {
+					queries: {
+						refetchOnWindowFocus: false,
+					},
+				},
+			},
+		}
+	},
+	ssr: false,
 })
 
 /**
