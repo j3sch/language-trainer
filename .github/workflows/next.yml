@@ -16,9 +16,9 @@ jobs:
         permissions:
             contents: read
             deployments: write
-        # env:
-        #   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-        #   TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+        env:
+            TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+            TURBO_TEAM: ${{ vars.TURBO_TEAM }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
