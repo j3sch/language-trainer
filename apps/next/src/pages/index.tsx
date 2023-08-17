@@ -66,13 +66,13 @@ export default function Home() {
 			<div className="flex-1">
 				<SidebarNavigation />
 			</div>
-			<div className="col flex flex-col items-center md:w-1/2 ml-8">
+			<div className="col flex flex-col items-center w-full ml-8">
 				<div className="flex w-full flex-1">
 					<div className="justify-center flex w-full flex-col  items-center">
 						{previousTask && <SolutionBox historyItem={previousTask} />}
 					</div>
 				</div>
-				<div className="w-full flex-col justify-center space-y-12 rounded-xl border border-zinc-100 bg-zinc-800/40 p-12 font-medium dark:border-zinc-700/40">
+				<div className="w-full max-w-4xl flex-col justify-center space-y-12 rounded-xl border border-zinc-100 bg-zinc-800/40 p-12 font-medium dark:border-zinc-700/40">
 					{data && (
 						<>
 							<span className="flex flex-grow justify-center text-center text-2xl text-white">

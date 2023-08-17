@@ -14,16 +14,13 @@ import { useRouter } from 'next/router'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { User } from '@supabase/supabase-js'
+import clsx from 'clsx'
 
 const navigation = [
 	{ name: 'Learning', href: '/', icon: HomeIcon },
 	{ name: 'History', href: '/history', icon: CounterClockwiseClockIcon },
 	{ name: 'Favourites', href: '/favourites', icon: StarIcon },
 ]
-
-function classNames(...classes) {
-	return classes.filter(Boolean).join(' ')
-}
 
 export default function SidebarNavigation() {
 	const [user] = useSupabaseUser()
@@ -48,7 +45,7 @@ export default function SidebarNavigation() {
 								<li key={item.name}>
 									<a
 										href={item.href}
-										className={classNames(
+										className={clsx(
 											item.href === pathname
 												? 'bg-zinc-800 text-white'
 												: 'text-gray-400 hover:text-white hover:bg-zinc-700/40',
