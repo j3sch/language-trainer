@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { type History } from '../types'
+import { History } from '../types'
 import SolutionBox from './SolutionBox'
 
 interface Props {

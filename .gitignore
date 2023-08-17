@@ -43,7 +43,6 @@ dist/
 .DS_Store
 THUMBS_DB
 node_modules/
-types/
 
 # Cloudflare D1
 **/.wrangler/*
