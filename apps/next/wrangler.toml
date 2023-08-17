@@ -1,8 +1,8 @@
 [env.preview]
-name = "t4-stack-preview"
+name = "language-trainer-preview"
 workers_dev = true
 
 [env.production]
-name = "t4-stack"
-route = "app.t4stack.com/*"
+name = "language-trainer"
+route = "language-trainer.pages.dev/*"
 workers_dev = false
