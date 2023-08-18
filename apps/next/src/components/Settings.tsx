@@ -66,7 +66,7 @@ export default function Settings(props: Props) {
 								/>
 							</div>
 						</div>
-						<TenseSelect />
+						{/* <TenseSelect /> */}
 					</div>
 					<div className="h-24" />
 				</>

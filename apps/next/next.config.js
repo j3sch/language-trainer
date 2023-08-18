@@ -1,5 +1,3 @@
-const nextTranslate = require('next-translate-plugin')
-
 const boolVals = {
   true: true,
   false: false,
@@ -25,5 +23,5 @@ module.exports = function () {
     },
   }
 
-  return nextTranslate(config)
+  return config
 }
