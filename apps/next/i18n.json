@@ -1,9 +1,0 @@
-{
-  "locales": ["en", "de"],
-  "defaultLocale": "de",
-  "pages": {
-    "/": ["settings"],
-    "/sign-in": ["auth"],
-    "/sign-up": ["auth"]
-  }
-}

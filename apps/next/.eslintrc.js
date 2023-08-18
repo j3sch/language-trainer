@@ -1,10 +1,7 @@
 module.exports = {
-  extends: ["next/babel","next/core-web-vitals"]
+  extends: 'next',
   root: true,
   parserOptions: {
-    project: './tsconfig.json',
-  },
-  rules: {
-    '@typescript-eslint/no-non-null-assertion': 'off',
-  },
+    project: './tsconfig.json'
+  }
 }

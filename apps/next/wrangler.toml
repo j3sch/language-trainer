@@ -1,11 +1,8 @@
 [env.preview]
-name = "language-trainer-preview"
-compatibility_date = "2023-08-17"
+name = "t4-stack-preview"
 workers_dev = true
-account_id = "57aeeb8bc8b9a7f109b724fe491b85f1"
 
 [env.production]
-name = "language-trainer"
-compatibility_date = "2023-08-17"
-route = "language-trainer.pages.dev/*"
+name = "t4-stack"
+route = "app.t4stack.com/*"
 workers_dev = false

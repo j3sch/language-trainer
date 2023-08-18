@@ -6,7 +6,6 @@
     "wix.vscode-import-cost",
     "unifiedjs.vscode-mdx",
     "RobbOwen.synthwave-vscode",
-    "rangav.vscode-thunder-client",
     "wayou.vscode-todo-highlight",
     "steoates.autoimport",
     "IronGeek.vscode-env",
@@ -18,6 +17,8 @@
     "tamasfe.even-better-toml",
     "formulahendry.auto-rename-tag",
     "dbaeumer.vscode-eslint",
-    "drcika.apc-extension"
+    "expo.vscode-expo-tools",
+    "drcika.apc-extension",
+    "Postman.postman-for-vscode"
   ]
 }

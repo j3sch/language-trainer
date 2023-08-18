@@ -1,7 +1,7 @@
 import type { SignInWithOAuthCredentials, User, UserResponse } from '@supabase/supabase-js'
 import { supabase } from './init'
 import { useEffect } from 'react'
-import { useSupabaseUser, useUserLoading } from '../../atoms/auth'
+import { useSupabaseUser, useUserLoading } from 'src/atoms/auth'
 
 const signIn = async (email: string, password: string) => {
   const {

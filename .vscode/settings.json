@@ -17,8 +17,14 @@
     "**/.gitignore": false,
     "**/types": false,
     "**/dist": false,
+    "apps/expo/index.js": false,
+    "**/metro.config.js": false,
+    "**/eas.json": false,
+    "**/tamagui.config.ts": false,
     "**/babel.config.js": false,
+    "**/.expo": false,
     "**/.next": false,
+    "**/.tamagui": false,
     "**/.eslintrc.js": false,
     "**/next-env.d.ts": false,
     "**/.vscode": false,
@@ -47,6 +53,11 @@
     "fontSize": 12
   },
   "apc.electron": {
+    "frame": false,
+    "transparent": true,
+    "vibrancy": "ultra-dark",
+    "opacity": 0.9, // Range: 0-1 (0 means full transparency). If set, you won't see the element.
+    "visualEffectState": "active",
     "titleBarStyle": "hiddenInset",
     "trafficLightPosition": {
       "x": 8,
@@ -60,7 +71,8 @@
   "apc.listRow": {
     "height": 21,
     "fontSize": 13
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
   // Turn this on if you want to debug the T4 App Tools Extension
-  // "terminal.integrated.defaultProfile.windows": null,
+  // "terminal.integrated.defaultProfile.windows": null
 }
