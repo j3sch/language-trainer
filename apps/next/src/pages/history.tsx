@@ -1,5 +1,5 @@
 import TranslateInput from 'src/components/TranslateInput'
-import { api } from 'src/utils/api'
+import { api } from '@app/utils/api'
 import { type KeyboardEvent, type MouseEvent, useState, useEffect } from 'react'
 import { markWords } from 'src/utils/algo'
 import Footer from 'src/components/Footer'
@@ -16,7 +16,7 @@ import { useAnswerLanguage, useQuestionLanguage } from '@/atoms/settings'
 import SidebarNavigation from '@/components/SidebarNavigation'
 import SolutionBox from '@/components/SolutionBox'
 
-export default function History() {
+export default function HistoryPage() {
 	const { data, refetch } = api.translations.getHistories.useQuery()
 
 	return (
