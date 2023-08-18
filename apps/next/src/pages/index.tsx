@@ -3,7 +3,7 @@ import { api } from 'src/utils/api'
 import { type KeyboardEvent, type MouseEvent, useState, useEffect } from 'react'
 import { markWords } from 'src/utils/algo'
 import Footer from 'src/components/Footer'
-import { History } from 'src/types'
+import { IHistory } from 'src/types'
 import { isResTypeCorrect } from 'src/utils/isResTypeCorrect'
 import Settings from '@/components/Settings'
 import { useAnswerLanguage, useQuestionLanguage } from '@/atoms/settings'
@@ -13,7 +13,7 @@ import SolutionBox from '@/components/SolutionBox'
 export default function Home() {
 	const [answer, setAnswer] = useState<string>('')
 	const saveAnswer = api.translations.saveAnswer.useMutation()
-	const [previousTask, setpreviousTask] = useState<History | null>(null)
+	const [previousTask, setpreviousTask] = useState<IHistory | null>(null)
 	const [isHistoryActive, setIsHistoryActive] = useState<boolean>(false)
 	const [questionLanguage] = useQuestionLanguage()
 	const [answerLanguage] = useAnswerLanguage()

@@ -1,10 +1,10 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { History } from '../types'
+import { IHistory } from '../types'
 import SolutionBox from './SolutionBox'
 
 interface Props {
 	isHistoryActive: boolean
-	history: History[]
+	history: IHistory[]
 	setIsHistoryActive: (value: boolean) => void
 }
 

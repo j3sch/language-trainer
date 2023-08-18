@@ -1,9 +1,9 @@
-import { type History } from '../types'
+import { type IHistory } from '../types'
 import { LightBulbIcon, StarIcon } from '@heroicons/react/24/outline'
 import PopoverInfo from './Popover'
 
 interface Props {
-	historyItem: History
+	historyItem: IHistory
 }
 
 export default function SolutionBox(props: Props) {
