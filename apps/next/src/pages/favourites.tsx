@@ -18,7 +18,7 @@ import SidebarNavigation from '@/components/SidebarNavigation'
 import SolutionBox from '@/components/SolutionBox'
 import { useAtom } from 'jotai'
 
-export default function History() {
+export default function Favourites() {
 	const { data, refetch } = api.translations.getHistories.useQuery()
 
 	return (
