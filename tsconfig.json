@@ -1,10 +1,9 @@
 {
-  "compilerOptions": {
-    "strictNullChecks": true,
-    "noUncheckedIndexedAccess": true,
-    "paths": {
-      "app/*": ["./packages/app/*"],
-      "@lt/api/*": ["./packages/api/*"]
-    }
-  }
+	"compilerOptions": {
+		"strictNullChecks": true,
+		"noUncheckedIndexedAccess": true,
+		"paths": {
+			"@lt/api/*": ["./packages/api/*"]
+		}
+	}
 }

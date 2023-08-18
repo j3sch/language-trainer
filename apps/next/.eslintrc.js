@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'next',
+  extends: ["next/babel","next/core-web-vitals"]
   root: true,
   parserOptions: {
     project: './tsconfig.json',
