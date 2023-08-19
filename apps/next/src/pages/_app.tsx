@@ -16,9 +16,10 @@ function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | nu
   const [supabaseClient] = useState(() => createPagesBrowserClient())
   const { push, pathname } = useRouter()
   const unprotectedRoutes = (pathname === '/sign-in' || pathname === '/sign-up')
+
   async function checkSession() {
     const { session } = await getSession()
-   
+  
     if (session && unprotectedRoutes) {
       push('/')
     } else if (!session && !unprotectedRoutes) {
@@ -26,8 +27,9 @@ function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | nu
     }
   }
 
-  checkSession()
-
+  useEffect(() => {
+      checkSession()
+  }, [])
 
   return (
     <>
