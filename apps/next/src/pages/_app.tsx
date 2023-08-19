@@ -10,23 +10,24 @@ import React, { useEffect, useState } from 'react'
 import { getUser } from 'src/utils/supabase'
 import { useRouter } from 'next/router'
 import { ThemeProvider } from 'next-themes'
-import { useUser } from 'src/utils/supabase/auth'
-import { useSupabaseUser, useUserLoading } from 'src/atoms/auth'
+import { getSession, useUser } from 'src/utils/supabase/auth'
 
 function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | null }>) {
   const [supabaseClient] = useState(() => createPagesBrowserClient())
   const { push, pathname } = useRouter()
-  useUser()
-  const [user] = useSupabaseUser()
-  const [isUserLoading] = useUserLoading()
-
-  if (!isUserLoading) {
-    if (user && (pathname === '/sign-in' || pathname === '/sign-up')) {
+  const unprotectedRoutes = (pathname === '/sign-in' || pathname === '/sign-up')
+  async function checkSession() {
+    const { session } = await getSession()
+   
+    if (session && unprotectedRoutes) {
       push('/')
-    } else if (!user && !(pathname === '/sign-in' || pathname === '/sign-up')) {
+    } else if (!session && !unprotectedRoutes) {
       push('/sign-in')
     }
   }
+
+  checkSession()
+
 
   return (
     <>

@@ -13,7 +13,6 @@ interface Props {
 
 export default function Settings(props: Props) {
   const { isHistoryActive, refetch } = props
-  const { loading, user, setUser } = useUser()
   const { push } = useRouter()
 
   const [questionLanguage, setQuestionLanguage] = useQuestionLanguage()

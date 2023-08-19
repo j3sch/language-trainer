@@ -84,6 +84,11 @@ const useUser = () => {
   return { user, loading, setUser }
 }
 
+const getSession = async () => {
+  const { data: { session }, error  } = await supabase.auth.getSession()
+  return { session, error }
+}
+
 export {
   supabase,
   signIn,
@@ -94,4 +99,5 @@ export {
   signOut,
   getUser,
   useUser,
+  getSession,
 }
