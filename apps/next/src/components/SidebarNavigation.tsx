@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import { User } from '@supabase/supabase-js';
 import clsx from 'clsx';
 import { TNavigation, useNavigation } from 'src/atoms/navigation';
+import { useUser } from 'src/utils/supabase/auth';
 
 const pages: {
   name: string;
@@ -28,6 +29,7 @@ const pages: {
 ];
 
 export default function SidebarNavigation() {
+  useUser();
   const [user] = useSupabaseUser();
   const { push, pathname } = useRouter();
   const { theme, setTheme } = useTheme();
