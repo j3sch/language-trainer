@@ -3,6 +3,6 @@ name = "language-trainer-preview.pages.dev"
 workers_dev = true
 
 [env.production]
-name = "lagnuage-trainer-d"
+name = "lagnuage-trainer"
 route = "language-trainer.pages.dev/*"
 workers_dev = false
