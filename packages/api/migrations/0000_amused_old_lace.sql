@@ -6,4 +6,7 @@ CREATE TABLE `histories` (
 	`user_id` text NOT NULL
 );
 --> statement-breakpoint
-DROP TABLE `cars`;
+CREATE TABLE `users` (
+	`id` text PRIMARY KEY NOT NULL,
+	`email` text NOT NULL
+);

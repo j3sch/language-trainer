@@ -1,8 +1,8 @@
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
-import * as SelectPrimitive from '@radix-ui/react-select'
-import { clsx } from 'clsx'
-import React from 'react'
-import Button from './Button'
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
+import * as SelectPrimitive from '@radix-ui/react-select';
+import { clsx } from 'clsx';
+import React from 'react';
+import Button from './Button';
 
 export default function TenseSelect() {
   // const contentList: string[] = t('tenses', {}, { returnObjects: true })
@@ -48,5 +48,5 @@ export default function TenseSelect() {
     //     </SelectPrimitive.ScrollDownButton>
     //   </SelectPrimitive.Content>
     // </SelectPrimitive.Root>
-  )
+  );
 }

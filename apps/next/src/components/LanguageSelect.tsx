@@ -1,20 +1,20 @@
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
-import * as SelectPrimitive from '@radix-ui/react-select'
-import { clsx } from 'clsx'
-import React from 'react'
-import Button from './Button'
-import ReactCountryFlag from 'react-country-flag'
-import { LANGUAGES } from 'src/types/languages'
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
+import * as SelectPrimitive from '@radix-ui/react-select';
+import { clsx } from 'clsx';
+import React from 'react';
+import Button from './Button';
+import ReactCountryFlag from 'react-country-flag';
+import { LANGUAGES } from 'src/types/languages';
 
 interface Props {
-  defaultValue: string
-  value: string
-  againstValue: string
-  onValueChange: (value: LANGUAGES) => void
+  defaultValue: string;
+  value: string;
+  againstValue: string;
+  onValueChange: (value: LANGUAGES) => void;
 }
 
 export default function LanguageSelect(props: Props) {
-  const { defaultValue, onValueChange, value, againstValue } = props
+  const { defaultValue, onValueChange, value, againstValue } = props;
 
   return (
     <SelectPrimitive.Root defaultValue={defaultValue} value={value} onValueChange={onValueChange}>
@@ -39,7 +39,7 @@ export default function LanguageSelect(props: Props) {
               className={clsx(
                 'relative flex items-center rounded-md px-8 py-2 text-sm font-medium text-zinc-700 focus:bg-zinc-100 dark:text-zinc-300 dark:focus:bg-zinc-900',
                 'radix-disabled:opacity-50',
-                'select-none focus:outline-none'
+                'select-none focus:outline-none',
               )}
             >
               <ReactCountryFlag countryCode="US" className="mr-1.5" />
@@ -70,7 +70,7 @@ export default function LanguageSelect(props: Props) {
               className={clsx(
                 'relative flex items-center rounded-md px-8 py-2 text-sm font-medium text-zinc-700 focus:bg-zinc-100 dark:text-zinc-300 dark:focus:bg-zinc-900',
                 'radix-disabled:opacity-50',
-                'select-none focus:outline-none'
+                'select-none focus:outline-none',
               )}
             >
               <ReactCountryFlag countryCode="DE" className="mr-1.5" />
@@ -87,7 +87,7 @@ export default function LanguageSelect(props: Props) {
               className={clsx(
                 'relative flex items-center rounded-md px-8 py-2 text-sm font-medium text-zinc-700 focus:bg-zinc-100 dark:text-zinc-300 dark:focus:bg-zinc-900',
                 'radix-disabled:opacity-50',
-                'select-none focus:outline-none'
+                'select-none focus:outline-none',
               )}
             >
               <ReactCountryFlag countryCode="ES" className="mr-1.5" />
@@ -148,5 +148,5 @@ export default function LanguageSelect(props: Props) {
         </SelectPrimitive.ScrollDownButton>
       </SelectPrimitive.Content>
     </SelectPrimitive.Root>
-  )
+  );
 }

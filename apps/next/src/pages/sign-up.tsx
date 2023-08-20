@@ -1,21 +1,21 @@
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { trpc } from 'src/utils/trpc'
-import { signIn, signUp } from 'src/utils/supabase'
-import { MouseEvent } from 'react'
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { trpc } from 'src/utils/trpc';
+import { signIn, signUp } from 'src/utils/supabase';
+import { MouseEvent } from 'react';
 
 export default function SignUp() {
-  const { push } = useRouter()
-  const createUser = trpc.user.create.useMutation()
+  const { push } = useRouter();
+  const createUser = trpc.user.create.useMutation();
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   async function handleEmailSignInWithPress(e: MouseEvent<HTMLButtonElement>) {
-    e.preventDefault()
-    const { user, error } = await signUp(email, password)
+    e.preventDefault();
+    const { user, error } = await signUp(email, password);
 
-    if (!user?.email) return
+    if (!user?.email) return;
 
     createUser.mutate(
       {
@@ -24,17 +24,17 @@ export default function SignUp() {
       },
       {
         onSuccess: (res: any) => {
-          console.log('res', res)
+          console.log('res', res);
         },
-      }
-    )
+      },
+    );
 
     if (error) {
-      console.error(error)
+      console.error(error);
 
-      return
+      return;
     }
-    push('/')
+    push('/');
   }
 
   return (
@@ -50,10 +50,7 @@ export default function SignUp() {
           <div className="bg-white dark:bg-zinc-800 dark:border dark:border-zinc-700 px-6 py-12 shadow sm:rounded-lg sm:px-12">
             <form className="space-y-6" action="#" method="POST">
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-300"
-                >
+                <label htmlFor="email" className="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-300">
                   Email address
                 </label>
                 <div className="mt-2">
@@ -115,5 +112,5 @@ export default function SignUp() {
         </div>
       </div>
     </>
-  )
+  );
 }

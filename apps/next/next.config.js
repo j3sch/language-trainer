@@ -1,10 +1,9 @@
 const boolVals = {
   true: true,
   false: false,
-}
+};
 
-const disableBrowserLogs =
-  boolVals[process.env.DISABLE_BROWSER_LOGS] ?? process.env.NODE_ENV === 'production'
+const disableBrowserLogs = boolVals[process.env.DISABLE_BROWSER_LOGS] ?? process.env.NODE_ENV === 'production';
 
 module.exports = function () {
   /** @type {import('next').NextConfig} */
@@ -21,7 +20,7 @@ module.exports = function () {
     compiler: {
       removeConsole: disableBrowserLogs,
     },
-  }
+  };
 
-  return config
-}
+  return config;
+};

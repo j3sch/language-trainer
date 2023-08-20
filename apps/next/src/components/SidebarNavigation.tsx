@@ -5,38 +5,37 @@ import {
   DocumentDuplicateIcon,
   FolderIcon,
   UsersIcon,
-} from '@heroicons/react/24/outline'
-import {
-  CounterClockwiseClockIcon,
-  ExitIcon,
-  HomeIcon,
-  MoonIcon,
-  StarIcon,
-  SunIcon,
-} from '@radix-ui/react-icons'
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
-import { getUser, signOut } from 'src/utils/supabase'
-import { useSupabaseUser } from 'src/atoms/auth'
-import { useRouter } from 'next/router'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
-import { User } from '@supabase/supabase-js'
-import clsx from 'clsx'
+} from '@heroicons/react/24/outline';
+import { CounterClockwiseClockIcon, ExitIcon, HomeIcon, MoonIcon, StarIcon, SunIcon } from '@radix-ui/react-icons';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { getUser, signOut } from 'src/utils/supabase';
+import { useSupabaseUser } from 'src/atoms/auth';
+import { useRouter } from 'next/router';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { User } from '@supabase/supabase-js';
+import clsx from 'clsx';
+import { TNavigation, useNavigation } from 'src/atoms/navigation';
 
-const navigation = [
-  { name: 'Learning', href: '/', icon: HomeIcon },
-  { name: 'History', href: '/history', icon: CounterClockwiseClockIcon },
-  { name: 'Favourites', href: '/favourites', icon: StarIcon },
-]
+const pages: {
+  name: string;
+  href: TNavigation;
+  icon: React.ElementType;
+}[] = [
+  { name: 'Learning', href: 'learning', icon: HomeIcon },
+  { name: 'History', href: 'history', icon: CounterClockwiseClockIcon },
+  { name: 'Favourites', href: 'favourites', icon: StarIcon },
+];
 
 export default function SidebarNavigation() {
-  const [user] = useSupabaseUser()
-  const { push, pathname } = useRouter()
-  const { theme, setTheme } = useTheme()
+  const [user] = useSupabaseUser();
+  const { push, pathname } = useRouter();
+  const { theme, setTheme } = useTheme();
+  const [navigation, setNavigation] = useNavigation();
 
   function onSignOut() {
-    signOut()
-    push('/sign-in')
+    signOut();
+    push('/sign-in');
   }
 
   return (
@@ -48,20 +47,20 @@ export default function SidebarNavigation() {
         <ul role="list" className="flex flex-1 flex-col gap-y-7 justify-between">
           <li>
             <ul role="list" className="-mx-2 space-y-1">
-              {navigation.map((item) => (
+              {pages.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
+                  <button
+                    onClick={() => setNavigation(item.href)}
                     className={clsx(
-                      item.href === pathname
+                      item.href === navigation
                         ? 'bg-zinc-800 text-white'
                         : 'text-gray-400 hover:text-white hover:bg-zinc-700/40',
-                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold items-center'
+                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold items-center w-full',
                     )}
                   >
                     <item.icon className="h-5 w-5 shrink-0" aria-hidden="true" />
                     {item.name}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -118,5 +117,5 @@ export default function SidebarNavigation() {
         </ul>
       </nav>
     </div>
-  )
+  );
 }

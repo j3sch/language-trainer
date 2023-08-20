@@ -1,87 +1,62 @@
-import TranslateInput from 'src/components/TranslateInput'
-import { trpc } from 'src/utils/trpc'
-import { type KeyboardEvent, type MouseEvent, useState, useEffect } from 'react'
-import { markWords } from 'src/utils/algo'
-import Footer from 'src/components/Footer'
-import { IHistory } from 'src/types'
-import { isResTypeCorrect } from 'src/utils/isResTypeCorrect'
-import Settings from 'src/components/Settings'
-import { useAnswerLanguage, useQuestionLanguage } from 'src/atoms/settings'
-import SidebarNavigation from 'src/components/SidebarNavigation'
-import SolutionBox from 'src/components/SolutionBox'
+import { trpc } from 'src/utils/trpc';
+import { type KeyboardEvent, type MouseEvent, useState, useEffect, Context } from 'react';
+import Footer from 'src/components/Footer';
+import { IHistory } from 'src/types';
+import { useAnswerLanguage, useQuestionLanguage } from 'src/atoms/settings';
+import SidebarNavigation from 'src/components/SidebarNavigation';
+import SolutionBox from 'src/components/SolutionBox';
+import SidebarLayout from 'src/layouts/Sidebar';
+import { createPagesServerClient } from '@supabase/auth-helpers-nextjs';
+import TranslateBox from 'src/components/TranslateBox';
+import History from 'src/components/History';
+import { usePreviousTask } from 'src/atoms/previousTask';
+import { useNavigation } from 'src/atoms/navigation';
+import { useCurrentTask } from 'src/atoms/currentTask';
 
 export default function Home() {
-  const [answer, setAnswer] = useState<string>('')
-  const saveAnswer = trpc.translations.saveAnswer.useMutation()
-  const [previousTask, setpreviousTask] = useState<IHistory | null>(null)
-  const [isHistoryActive, setIsHistoryActive] = useState<boolean>(false)
-  const [questionLanguage] = useQuestionLanguage()
-  const [answerLanguage] = useAnswerLanguage()
+  const [previousTask, setpreviousTask] = usePreviousTask();
+  const [isHistoryActive, setIsHistoryActive] = useState<boolean>(false);
+  const [navigation] = useNavigation();
+  const [questionLanguage] = useQuestionLanguage();
+  const [answerLanguage] = useAnswerLanguage();
 
   const { data, refetch } = trpc.translations.getRandomSentence.useQuery({
     langQ: questionLanguage,
     langA: answerLanguage,
-  })
+  });
+  const [currentTask, setCurrentTask] = useCurrentTask();
 
-  const [tense, setTense] = useState<string>('random')
-  const [showExplanation, setShowExplanation] = useState<boolean>(false)
-
-  function onSubmit() {
-    if (!(answer && data)) return
-
-    const body = {
-      question: data.question,
-      answer: markWords(answer, data.solution),
-      solution: data.solution,
+  useEffect(() => {
+    if (data) {
+      setCurrentTask(data);
     }
-
-    setpreviousTask(body)
-
-    setAnswer('')
-    refetch()
-
-    saveAnswer.mutate(body, {
-      onSuccess: (res: any) => {
-        if (!isResTypeCorrect(res)) console.error(res)
-      },
-    })
-  }
-
-  function onKeyDown(event: KeyboardEvent<HTMLInputElement>) {
-    if (event.key === 'Enter') {
-      onSubmit()
-    }
-  }
+  }, [data]);
 
   return (
-    <>
-      <div className="flex-1">
-        <SidebarNavigation />
-      </div>
-      <div className="col flex flex-col items-center w-full ml-8">
-        <div className="flex w-full flex-1">
-          <div className="justify-center flex w-full flex-col  items-center">
-            {previousTask && <SolutionBox historyItem={previousTask} />}
+    <SidebarLayout>
+      {navigation === 'history' && (
+        <div className="overflow-y-scroll flex w-full min-h-full">
+          <div className="w-full flex flex-col mr-96">
+            <History />
+            <Footer />
           </div>
         </div>
-        <div className="w-full max-w-4xl flex-col justify-center space-y-12 rounded-xl border border-zinc-100 bg-zinc-800/40 p-12 font-medium dark:border-zinc-700/40">
-          {data && (
-            <>
-              <span className="flex flex-grow justify-center text-center text-2xl text-white">
-                {data.question}
-              </span>
-              <TranslateInput
-                onKeyDown={onKeyDown}
-                onClick={onSubmit}
-                setAnswer={setAnswer}
-                answer={answer}
-              />
-            </>
-          )}
+      )}
+      {navigation === 'learning' && (
+        <div className="flex-1 flex flex-col h-full">
+          <div className="grow">
+            <div className="h-full flex-col flex items-center justify-center w-full">
+              {previousTask && <SolutionBox historyItem={previousTask} />}
+            </div>
+          </div>
+          <div className="w-full flex justify-center">
+            <TranslateBox refetch={refetch} />
+          </div>
+          <div className="items-end grow justify-items-end flex">
+            <Footer />
+          </div>
         </div>
-        <Footer />
-      </div>
-      <Settings isHistoryActive={isHistoryActive} refetch={refetch} />
-    </>
-  )
+      )}
+    </SidebarLayout>
+  );
 }

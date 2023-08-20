@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1687584095750,
-      "tag": "0000_red_brood",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1692056780854,
-      "tag": "0001_cuddly_thunderbird",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1692394346294,
-      "tag": "0002_same_toad",
+      "when": 1692405236430,
+      "tag": "0000_amused_old_lace",
       "breakpoints": true
     }
   ]

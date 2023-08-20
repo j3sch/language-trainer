@@ -1,23 +1,23 @@
-import { MouseEvent } from 'react'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { getUser, signIn } from 'src/utils/supabase'
+import { MouseEvent } from 'react';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { getUser, signIn } from 'src/utils/supabase';
 
 export default function Login() {
-  const { push } = useRouter()
+  const { push } = useRouter();
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   async function handleEmailSignInWithPress(e: MouseEvent<HTMLButtonElement>) {
-    e.preventDefault()
-    const { error } = await signIn(email, password)
+    e.preventDefault();
+    const { error } = await signIn(email, password);
 
     if (error) {
-      console.error(error.message)
-      return
+      console.error(error.message);
+      return;
     }
-    push('/')
+    push('/');
   }
 
   return (
@@ -33,10 +33,7 @@ export default function Login() {
           <div className="bg-white dark:bg-zinc-800 dark:border dark:border-zinc-700 px-6 py-12 shadow sm:rounded-lg sm:px-12">
             <form className="space-y-6" action="#" method="POST">
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-300"
-                >
+                <label htmlFor="email" className="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-300">
                   Email address
                 </label>
                 <div className="mt-2">
@@ -109,5 +106,5 @@ export default function Login() {
         </div>
       </div>
     </>
-  )
+  );
 }

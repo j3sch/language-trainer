@@ -6,5 +6,5 @@ export function isResTypeCorrect(res: unknown): res is { content: string; role: 
     'role' in res &&
     typeof res.content === 'string' &&
     typeof res.role === 'string'
-  )
+  );
 }

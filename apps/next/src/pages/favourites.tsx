@@ -1,9 +1,9 @@
-import { trpc } from 'src/utils/trpc'
-import Footer from 'src/components/Footer'
-import SidebarNavigation from 'src/components/SidebarNavigation'
+import { trpc } from 'src/utils/trpc';
+import Footer from 'src/components/Footer';
+import SidebarNavigation from 'src/components/SidebarNavigation';
 
 export default function Favourites() {
-  const { data, refetch } = trpc.translations.getHistories.useQuery()
+  const { data, refetch } = trpc.translations.getHistories.useQuery();
 
   return (
     <div className="overflow-x-hidden h-full">
@@ -17,5 +17,5 @@ export default function Favourites() {
       </div>
       <Footer />
     </div>
-  )
+  );
 }
