@@ -43,16 +43,12 @@ export default function Home() {
         </div>
       )}
       {navigation === 'learning' && (
-        <div className="flex-1 flex flex-col h-full">
-          <div className="grow">
-            <div className="h-full flex-col flex items-center justify-center w-full">
-              {previousTask && <SolutionBox historyItem={previousTask} />}
-            </div>
+        <div className="flex-1 flex flex-col w-full items-center h-full">
+          <div className="flex-1 flex-col flex items-center justify-center w-full">
+            {previousTask && <SolutionBox historyItem={previousTask} />}
           </div>
-          <div className="w-full flex justify-center">
-            <TranslateBox refetch={refetch} />
-          </div>
-          <div className="items-end grow justify-items-end flex">
+          <TranslateBox refetch={refetch} />
+          <div className="flex-1 justify-items-end flex">
             <Footer />
           </div>
         </div>
