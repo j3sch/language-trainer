@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <SidebarLayout>
       {navigation === 'history' && (
-        <div className="overflow-y-scroll flex w-full min-h-full">
+        <div className="overflow-y-auto flex w-full min-h-full">
           <div className="w-full flex flex-col mr-96">
             <History />
             <Footer />
