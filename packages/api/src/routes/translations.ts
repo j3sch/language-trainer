@@ -3,7 +3,7 @@ import { router, protectedProcedure, publicProcedure } from '../trpc';
 import { LANGUAGES } from '../types/languages';
 import { z } from 'zod';
 import { histories, users } from '../db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 
 export const translationsRouter = router({
   getRandomSentence: publicProcedure.input(z.object({ langQ: z.string(), langA: z.string() })).query(({ input }) => {
@@ -36,8 +36,33 @@ export const translationsRouter = router({
         return null;
       }
     }),
-  getHistories: protectedProcedure.query(async ({ ctx }) => {
-    const { db, user } = ctx;
-    return await db.select().from(histories).where(eq(histories.user_id, user.id)).all();
-  }),
+  getHistories: protectedProcedure
+    .input(
+      z.object({
+        limit: z.number().min(1).max(100).nullish(),
+        cursor: z.number(),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      const limit = input.limit ?? 50;
+      const { cursor } = input;
+      const { db, user } = ctx;
+      const items = await db
+        .select()
+        .from(histories)
+        .orderBy(sql`${histories.id} desc`)
+        .where(eq(histories.user_id, user.id))
+        .limit(limit + 1)
+        .offset(cursor)
+        .all();
+      let nextCursor: number | undefined = undefined;
+      if (items.length > limit) {
+        items.pop();
+        nextCursor = cursor + limit;
+      }
+      return {
+        items,
+        nextCursor,
+      };
+    }),
 });
