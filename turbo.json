@@ -7,14 +7,6 @@
       "inputs": ["pages/**", "public/**"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
-    "t4-app-docs#build": {
-      "dependsOn": ["@t4/ui#build"],
-      "inputs": ["pages/**", "public/**"],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "expo-app#postinstall": {
-      "outputs": [".tamagui/**"]
-    },
     "@t4/ui#build": {
       "outputs": ["dist/**"]
     },
