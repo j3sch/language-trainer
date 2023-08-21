@@ -4,5 +4,5 @@ export interface IHistory {
 	answer: string
 	solution: string
 	user_id?: string
-	favorite: boolean
+	favorite: boolean | null
 }

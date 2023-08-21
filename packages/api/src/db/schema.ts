@@ -17,8 +17,7 @@ export const history = sqliteTable('history', {
   answer: text('answer').notNull(),
   solution: text('solution').notNull(),
   user_id: text('user_id').notNull(),
-  favorite: integer('id', { mode: 'boolean' }).default(false),
-  f: integer('id').default(0),
+  favorite: integer('favorite', { mode: 'boolean' }).default(false),
 });
 
 export const postsRelations = relations(history, ({ one }) => ({

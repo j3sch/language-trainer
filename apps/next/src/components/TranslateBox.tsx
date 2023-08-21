@@ -40,14 +40,18 @@ export default function TranslateBox(props: Props) {
       solution: currentTask.solution,
     };
 
-    setpreviousTask(body);
 
     setAnswer('');
     refetch();
 
     saveAnswer.mutate(body, {
-      onSuccess: (res: any) => {
-        if (!isResTypeCorrect(res)) console.error(res);
+      onSuccess: (res) => {
+        if (!res) return;
+        setpreviousTask({
+          id: res.id,
+          ...body,
+          favorite: false,
+        });
       },
     });
   }

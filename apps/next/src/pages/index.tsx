@@ -12,6 +12,8 @@ import History from 'src/components/History';
 import { usePreviousTask } from 'src/atoms/previousTask';
 import { useNavigation } from 'src/atoms/navigation';
 import { useCurrentTask } from 'src/atoms/currentTask';
+import Favourites from './favourites';
+import Favorites from 'src/components/Favorites';
 
 export default function Home() {
   const [previousTask, setpreviousTask] = usePreviousTask();
@@ -38,6 +40,14 @@ export default function Home() {
         <div className="overflow-y-auto flex w-full min-h-full">
           <div className="w-full flex flex-col mr-96">
             <History />
+            <Footer />
+          </div>
+        </div>
+      )}
+        {navigation === 'favourites' && (
+        <div className="overflow-y-auto flex w-full min-h-full">
+          <div className="w-full flex flex-col mr-96">
+            <Favorites />
             <Footer />
           </div>
         </div>

@@ -17,6 +17,7 @@ export default function SolutionBox(props: Props) {
   
   function onFavorite() {
     if (historyItem.id) {
+      historyItem.favorite = !historyItem.favorite;
       saveAnswer.mutate({ id: historyItem.id }, {
       });
     }
@@ -31,7 +32,7 @@ export default function SolutionBox(props: Props) {
             {/* <PopoverInfo>
           <LightBulbIcon className="h-10 w-10 rounded-md p-2 text-zinc-500 hover:border-white/10 hover:bg-white/5  dark:text-zinc-400" />
         </PopoverInfo> */}
-            <StarIcon onClick={onFavorite} className={clsx(historyItem.favorite ? "text-yellow-500" : "text-zinc-500 dark:text-zinc-400",
+            <StarIcon onClick={onFavorite} className={clsx(historyItem.favorite ? "text-yellow-500 dark:text-yellow-400" : "text-zinc-500 dark:text-zinc-400",
               "h-10 w-10 rounded-md   p-2 hover:border-white/10 hover:bg-white/5")}
               />
           </div>
