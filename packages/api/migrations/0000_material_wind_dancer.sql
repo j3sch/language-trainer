@@ -1,5 +1,5 @@
-CREATE TABLE `histories` (
-	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+CREATE TABLE `history` (
+	`id` integer DEFAULT 0,
 	`question` text NOT NULL,
 	`answer` text NOT NULL,
 	`solution` text NOT NULL,

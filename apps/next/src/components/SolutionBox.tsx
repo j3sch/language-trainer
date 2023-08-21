@@ -1,6 +1,10 @@
 import { type IHistory } from '../types';
 import { LightBulbIcon, StarIcon } from '@heroicons/react/24/outline';
 import PopoverInfo from './Popover';
+import { trpc } from 'src/utils/trpc';
+import { isResTypeCorrect } from 'src/utils/isResTypeCorrect';
+import { on } from 'events';
+import clsx from 'clsx';
 
 interface Props {
   historyItem: IHistory;
@@ -8,6 +12,16 @@ interface Props {
 
 export default function SolutionBox(props: Props) {
   const { historyItem } = props;
+
+  const saveAnswer = trpc.translations.favoriteTask.useMutation();
+  
+  function onFavorite() {
+    if (historyItem.id) {
+      saveAnswer.mutate({ id: historyItem.id }, {
+      });
+    }
+  }
+
 
   return (
     <div className="w-full max-w-5xl flex flex-row cursor-pointer rounded-2xl border border-zinc-100 text-xl text-zinc-600 transition-colors  dark:border-zinc-700/40 dark:text-zinc-400">
@@ -17,7 +31,9 @@ export default function SolutionBox(props: Props) {
             {/* <PopoverInfo>
           <LightBulbIcon className="h-10 w-10 rounded-md p-2 text-zinc-500 hover:border-white/10 hover:bg-white/5  dark:text-zinc-400" />
         </PopoverInfo> */}
-            <StarIcon className="h-10 w-10 rounded-md   p-2 text-zinc-500 hover:border-white/10 hover:bg-white/5   dark:text-zinc-400" />
+            <StarIcon onClick={onFavorite} className={clsx(historyItem.favorite ? "text-yellow-500" : "text-zinc-500 dark:text-zinc-400",
+              "h-10 w-10 rounded-md   p-2 hover:border-white/10 hover:bg-white/5")}
+              />
           </div>
           <span>{historyItem.question}</span>
           <span>

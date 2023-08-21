@@ -1,18 +1,19 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "20cc277f-8652-4f63-a22e-8549222939b8",
+  "id": "99d1974e-949a-4afc-b76a-357d2cde31ae",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "histories": {
-      "name": "histories",
+    "history": {
+      "name": "history",
       "columns": {
         "id": {
           "name": "id",
           "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
         },
         "question": {
           "name": "question",
