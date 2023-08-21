@@ -3,7 +3,7 @@ compatibility_date = "2023-01-01"
 send_metrics = false
 account_id = "57aeeb8bc8b9a7f109b724fe491b85f1"
 
-[[ d1_databases ]]
+[[d1_databases]]
 binding = "DB"
 database_name = "lt-db"
 database_id = "39e54d8b-46af-41f1-8098-95dbc53df493"

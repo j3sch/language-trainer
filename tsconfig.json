@@ -4,7 +4,7 @@
     "noUncheckedIndexedAccess": true,
     "paths": {
       "app/*": ["./packages/app/*"],
-      "@t4/api/*": ["./packages/api/*"]
+      "api/*": ["./packages/api/*"]
     }
   }
 }
