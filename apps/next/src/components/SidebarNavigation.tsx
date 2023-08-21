@@ -25,7 +25,7 @@ const pages: {
 }[] = [
   { name: 'Learning', href: 'learning', icon: HomeIcon },
   { name: 'History', href: 'history', icon: CounterClockwiseClockIcon },
-  { name: 'Favourites', href: 'favourites', icon: StarIcon },
+  { name: 'Favorites', href: 'favorites', icon: StarIcon },
 ];
 
 export default function SidebarNavigation() {

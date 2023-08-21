@@ -1,14 +1,51 @@
-import { type KeyboardEvent, type MouseEvent } from 'react';
+import { useState, type KeyboardEvent, type MouseEvent } from 'react';
+import { useCurrentTask } from 'src/atoms/currentTask';
+import { usePreviousTask } from 'src/atoms/previousTask';
+import { markWords } from 'src/utils/algo';
+import { trpc } from 'src/utils/trpc';
 
 interface Props {
-  onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
-  answer: string;
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
-  setAnswer: (answer: string) => void;
+  refetch: () => void;
 }
 
 export default function TranslateInput(props: Props) {
-  const { onKeyDown, onClick, setAnswer } = props;
+  const {refetch } = props;
+  const [answer, setAnswer] = useState<string>('');
+  const saveAnswer = trpc.translations.saveAnswer.useMutation();
+  const [currentTask] = useCurrentTask();
+
+  const [previousTask, setPreviousTask] = usePreviousTask();
+  
+  function onSubmit() {
+    if (!(answer && currentTask)) return;
+
+    const body = {
+      question: currentTask.question,
+      answer: markWords(answer, currentTask.solution),
+      solution: currentTask.solution,
+    };
+
+
+    setAnswer('');
+    refetch();
+
+    saveAnswer.mutate(body, {
+      onSuccess: (res) => {
+        if (!res) return;
+        setPreviousTask({
+          id: res.id,
+          ...body,
+          favorite: false,
+        });
+      },
+    });
+  }
+
+  function onKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'Enter') {
+      onSubmit();
+    }
+  }
 
   return (
     <div className="flex w-full rounded-md shadow-sm">
@@ -24,11 +61,11 @@ export default function TranslateInput(props: Props) {
           onChange={(e) => {
             setAnswer(e.target.value);
           }}
-          value={props.answer}
+          value={answer}
         />
       </div>
       <button
-        onClick={onClick}
+        onClick={onSubmit}
         type="button"
         className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-lg font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-zinc-800/40 dark:hover:bg-zinc-700/40"
       >
