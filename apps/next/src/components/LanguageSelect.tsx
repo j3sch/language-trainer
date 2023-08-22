@@ -43,7 +43,7 @@ export default function LanguageSelect(props: Props) {
               )}
             >
               <ReactCountryFlag countryCode="US" className="mr-1.5" />
-              <SelectPrimitive.ItemText>english</SelectPrimitive.ItemText>
+              <SelectPrimitive.ItemText>English</SelectPrimitive.ItemText>
               <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
@@ -74,7 +74,7 @@ export default function LanguageSelect(props: Props) {
               )}
             >
               <ReactCountryFlag countryCode="DE" className="mr-1.5" />
-              <SelectPrimitive.ItemText>german</SelectPrimitive.ItemText>
+              <SelectPrimitive.ItemText>German</SelectPrimitive.ItemText>
               <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
                 <CheckIcon />
               </SelectPrimitive.ItemIndicator>
