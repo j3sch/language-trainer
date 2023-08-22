@@ -1,11 +1,11 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "61c66f6a-1b39-4c55-986b-d2155d845265",
+  "id": "26285d8b-6af2-4679-9c8a-4917653e55ac",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "history": {
-      "name": "history",
+    "completedTasks": {
+      "name": "completedTasks",
       "columns": {
         "id": {
           "name": "id",
@@ -49,6 +49,13 @@
           "notNull": false,
           "autoincrement": false,
           "default": false
+        },
+        "percentage": {
+          "name": "percentage",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
         }
       },
       "indexes": {},

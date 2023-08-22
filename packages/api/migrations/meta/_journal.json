@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1692576621039,
-      "tag": "0000_magical_silver_centurion",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1692576840695,
-      "tag": "0001_glamorous_bastion",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1692576981276,
-      "tag": "0002_left_thor",
+      "when": 1692719044388,
+      "tag": "0000_spooky_valeria_richards",
       "breakpoints": true
     }
   ]

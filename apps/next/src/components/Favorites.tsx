@@ -7,7 +7,7 @@ export default function Favorites() {
   const observerElem = useRef(null);
 
   const { data, isSuccess, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
-    trpc.translations.getFavorites.useInfiniteQuery(
+    trpc.favorites.getFavorites.useInfiniteQuery(
       {
         limit: LIMIT,
       },
@@ -43,7 +43,7 @@ export default function Favorites() {
           data.pages.map(({ items }) => items.map((item) => <SolutionBox key={item.id} historyItem={item} />))}
       </div>
       <div className="loader flex justify-center mt-12" ref={observerElem}>
-        {isFetchingNextPage && hasNextPage &&
+        {isFetchingNextPage && hasNextPage && (
           <div role="status">
             <svg
               aria-hidden="true"
@@ -61,7 +61,8 @@ export default function Favorites() {
                 fill="currentFill"
               />
             </svg>
-          </div>}
+          </div>
+        )}
       </div>
     </div>
   );

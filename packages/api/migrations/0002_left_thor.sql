@@ -1,1 +1,0 @@
-ALTER TABLE history ADD `favorite` integer DEFAULT false;

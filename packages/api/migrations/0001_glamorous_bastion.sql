@@ -1,1 +1,0 @@
-ALTER TABLE `history` DROP COLUMN `favorite`;

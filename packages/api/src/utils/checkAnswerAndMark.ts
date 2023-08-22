@@ -1,4 +1,4 @@
-export function markWords(answer, solution) {
+export function checkAnswerAndMark(answer: string, solution: string) {
   const answerWords = answer.split(/(\W+)/);
   const solutionWords = solution.split(/(\W+)/);
 
@@ -17,10 +17,12 @@ export function markWords(answer, solution) {
   let i = answerWords.length;
   let j = solutionWords.length;
   const markedAnswer = [];
+  let correctWords = 0;
 
   while (i > 0 && j > 0) {
     if (answerWords[i - 1] === solutionWords[j - 1]) {
       markedAnswer.unshift(`<span style="color:green">${answerWords[i - 1]}</span>`);
+      correctWords++;
       i--;
       j--;
     } else if (dp[i - 1][j] >= dp[i][j - 1]) {
@@ -36,5 +38,10 @@ export function markWords(answer, solution) {
     i--;
   }
 
-  return markedAnswer.join('');
+  const percentage = parseFloat(((correctWords / answerWords.length) * 100).toFixed(1));
+
+  return {
+    markedAnswer: markedAnswer.join(''),
+    percentage,
+  };
 }

@@ -8,24 +8,25 @@ export const users = sqliteTable('users', {
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
-  posts: many(history),
+  posts: many(completedTasks),
 }));
 
-export const history = sqliteTable('history', {
+export const completedTasks = sqliteTable('completedTasks', {
   id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
   question: text('question').notNull(),
   answer: text('answer').notNull(),
   solution: text('solution').notNull(),
   user_id: text('user_id').notNull(),
   favorite: integer('favorite', { mode: 'boolean' }).default(false),
+  percentage: integer('percentage').notNull(),
 });
 
-export const postsRelations = relations(history, ({ one }) => ({
+export const postsRelations = relations(completedTasks, ({ one }) => ({
   user: one(users, {
-    fields: [history.user_id],
+    fields: [completedTasks.user_id],
     references: [users.id],
   }),
 }));
 
 export type User = InferModel<typeof users>;
-export type History = InferModel<typeof history>;
+export type CompletedTasks = InferModel<typeof completedTasks>;

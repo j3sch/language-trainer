@@ -1,7 +1,6 @@
 import { useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { useCurrentTask } from 'src/atoms/currentTask';
 import { usePreviousTask } from 'src/atoms/previousTask';
-import { markWords } from 'src/utils/algo';
 import { trpc } from 'src/utils/trpc';
 
 interface Props {
@@ -9,22 +8,21 @@ interface Props {
 }
 
 export default function TranslateInput(props: Props) {
-  const {refetch } = props;
+  const { refetch } = props;
   const [answer, setAnswer] = useState<string>('');
-  const saveAnswer = trpc.translations.saveAnswer.useMutation();
+  const saveAnswer = trpc.translations.checkAnswer.useMutation();
   const [currentTask] = useCurrentTask();
 
   const [previousTask, setPreviousTask] = usePreviousTask();
-  
+
   function onSubmit() {
     if (!(answer && currentTask)) return;
 
     const body = {
       question: currentTask.question,
-      answer: markWords(answer, currentTask.solution),
+      answer: answer,
       solution: currentTask.solution,
     };
-
 
     setAnswer('');
     refetch();
@@ -32,11 +30,7 @@ export default function TranslateInput(props: Props) {
     saveAnswer.mutate(body, {
       onSuccess: (res) => {
         if (!res) return;
-        setPreviousTask({
-          id: res.id,
-          ...body,
-          favorite: false,
-        });
+        setPreviousTask(res);
       },
     });
   }
