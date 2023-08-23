@@ -6,7 +6,7 @@ account_id = "57aeeb8bc8b9a7f109b724fe491b85f1"
 [[d1_databases]]
 binding = "DB"
 database_name = "lt-db"
-database_id = "739d5670-5aaf-45ba-8f66-d2aa0e5c9fd3"
+database_id = "1fcc1f82-d64c-46ba-89bc-2a2e2d296621"
 migrations_dir = "migrations"
 
 # The necessary secrets are:
