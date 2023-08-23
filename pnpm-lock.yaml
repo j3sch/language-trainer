@@ -92,9 +92,6 @@ importers:
       '@supabase/auth-helpers-react':
         specifier: ^0.4.2
         version: 0.4.2(@supabase/supabase-js@2.32.0)
-      '@tamagui/next-theme':
-        specifier: ^1.52.5
-        version: 1.52.5(react@18.2.0)
       '@tanstack/react-query':
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
@@ -3592,15 +3589,6 @@ packages:
       '@tamagui/simple-hash': 1.52.5
     transitivePeerDependencies:
       - react
-    dev: false
-
-  /@tamagui/next-theme@1.52.5(react@18.2.0):
-    resolution: {integrity: sha512-uZilrRN8hPDAiFguw0lMK9PTKKEI1QQS5Kjp2brpi+u0coT/OHZtaQrwkfXdUnMhaesJ0Jn5iQgSS3/xutgBXw==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      '@tamagui/use-event': 1.52.5(react@18.2.0)
-      react: 18.2.0
     dev: false
 
   /@tamagui/normalize-css-color@1.52.5:

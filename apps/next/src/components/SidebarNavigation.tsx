@@ -1,19 +1,9 @@
-import {
-  ArrowRightOnRectangleIcon,
-  CalendarIcon,
-  ChartPieIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  UsersIcon,
-} from '@heroicons/react/24/outline';
 import { CounterClockwiseClockIcon, ExitIcon, HomeIcon, MoonIcon, StarIcon, SunIcon } from '@radix-ui/react-icons';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { getUser, signOut } from 'src/utils/supabase';
 import { useSupabaseUser } from 'src/atoms/auth';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import { User } from '@supabase/supabase-js';
 import clsx from 'clsx';
 import { TNavigation, useNavigation } from 'src/atoms/navigation';
 import { useUser } from 'src/utils/supabase/auth';
@@ -81,7 +71,7 @@ export default function SidebarNavigation() {
               </li>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content className="border p-2 border-zinc-700 shadow w-52 flex flex-col rounded-md">
-              <DropdownMenu.Item
+              {/* <DropdownMenu.Item
                 onClick={() => (theme == 'dark' ? setTheme('light') : setTheme('dark'))}
                 className="py-1 px-3 h-10 flex flex-row items-center rounded-md text-zinc-500 hover:bg-white/5 dark:hover:bg-zinc-700/40  dark:bg-zinc-900 dark:text-zinc-300"
               >
@@ -96,7 +86,7 @@ export default function SidebarNavigation() {
                     <span>Dark Mode</span>
                   </div>
                 )}
-              </DropdownMenu.Item>
+              </DropdownMenu.Item> */}
               <DropdownMenu.Item
                 className="py-1 px-3 h-10 flex space-x-3 flex-row items-center rounded-md text-zinc-500 hover:bg-white/5 dark:hover:bg-zinc-700/40   dark:bg-zinc-900 dark:text-zinc-300"
                 onClick={onSignOut}
