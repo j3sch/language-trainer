@@ -6,7 +6,7 @@ export default function Favorites() {
   const LIMIT = 10;
   const observerElem = useRef(null);
 
-  const { data, isSuccess, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
+  const { data, isSuccess, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, refetch } =
     trpc.favorites.getFavorites.useInfiniteQuery(
       {
         limit: LIMIT,
@@ -40,7 +40,9 @@ export default function Favorites() {
     <div className="w-full my-20">
       <div className="space-y-8 flex-col w-full flex items-center">
         {isSuccess &&
-          data.pages.map(({ items }) => items.map((item) => <SolutionBox key={item.id} historyItem={item} />))}
+          data.pages.map(({ items }) =>
+            items.map((item) => <SolutionBox key={item.id} historyItem={item} refetch={refetch} />),
+          )}
       </div>
       <div className="loader flex justify-center mt-12" ref={observerElem}>
         {isFetchingNextPage && hasNextPage && (

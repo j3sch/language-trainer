@@ -2,23 +2,29 @@ import { type IHistory } from '../types';
 import { LightBulbIcon, StarIcon } from '@heroicons/react/24/outline';
 import PopoverInfo from './Popover';
 import { trpc } from 'src/utils/trpc';
-import { isResTypeCorrect } from 'src/utils/isResTypeCorrect';
-import { on } from 'events';
 import clsx from 'clsx';
 
 interface Props {
   historyItem: IHistory;
+  refetch?: () => void;
 }
 
 export default function SolutionBox(props: Props) {
-  const { historyItem } = props;
+  const { historyItem, refetch } = props;
 
   const saveAnswer = trpc.favorites.favoriteTask.useMutation();
 
   function onFavorite() {
     if (historyItem.id) {
       historyItem.favorite = !historyItem.favorite;
-      saveAnswer.mutate({ id: historyItem.id }, {});
+      saveAnswer.mutate(
+        { id: historyItem.id },
+        {
+          onSuccess: () => {
+            if (refetch) refetch();
+          },
+        },
+      );
     }
   }
 
