@@ -14,7 +14,7 @@ import { getSession } from 'src/utils/supabase/auth';
 function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session | null }>) {
   const [supabaseClient] = useState(() => createPagesBrowserClient());
   const { push, pathname } = useRouter();
-  const unprotectedRoutes = pathname === '/sign-in' || pathname === '/sign-up';
+  const unprotectedRoutes = pathname === '/sign-in' || pathname === '/sign-up' || pathname === '/verify-email';
 
   async function checkSession() {
     const { session } = await getSession();

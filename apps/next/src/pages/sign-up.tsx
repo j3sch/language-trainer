@@ -24,7 +24,10 @@ export default function SignUp() {
       },
       {
         onSuccess: (res: any) => {
-          console.log('res', res);
+          push({
+            pathname: '/verify-email',
+            query: { email },
+          });
         },
       },
     );
@@ -34,7 +37,6 @@ export default function SignUp() {
 
       return;
     }
-    push('/');
   }
 
   return (

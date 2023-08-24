@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
 import { users } from '../db/schema';
-import { router, protectedProcedure } from '../trpc';
+import { router, protectedProcedure, publicProcedure } from '../trpc';
 import { z } from 'zod';
 
 export const userRouter = router({
@@ -12,7 +12,7 @@ export const userRouter = router({
     }
     return null;
   }),
-  create: protectedProcedure
+  create: publicProcedure
     .input(
       z.object({
         email: z.string(),
