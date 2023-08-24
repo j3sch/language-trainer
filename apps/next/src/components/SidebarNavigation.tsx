@@ -59,11 +59,11 @@ export default function SidebarNavigation() {
           </li>
 
           <DropdownMenu.Root>
-            <DropdownMenu.Trigger>
+            <DropdownMenu.Trigger className="focus:outline-none">
               <li className="-mx-6 mt-auto">
                 <a
                   href="#"
-                  className="flex w-full items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-zinc-700/40"
+                  className=" flex w-full items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-zinc-700/40"
                 >
                   <span className="sr-only">Your profile</span>
                   <span aria-hidden="true">{user?.email}</span>
@@ -88,7 +88,7 @@ export default function SidebarNavigation() {
                 )}
               </DropdownMenu.Item> */}
               <DropdownMenu.Item
-                className="py-1 px-3 h-10 flex space-x-3 flex-row items-center rounded-md text-zinc-500 hover:bg-white/5 dark:hover:bg-zinc-700/40   dark:bg-zinc-900 dark:text-zinc-300"
+                className="py-1 px-3 h-10 focus:outline-none flex space-x-3 flex-row items-center rounded-md text-zinc-500 hover:bg-white/5 dark:hover:bg-zinc-700/40   dark:bg-zinc-900 dark:text-zinc-300"
                 onClick={onSignOut}
               >
                 <ExitIcon />
