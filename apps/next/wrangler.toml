@@ -1,6 +1,6 @@
 [env.preview]
-name = "language-trainer-preview.dev"
-route = "language-trainer-preview.pages.dev/*"
+name = "language-trainer-preview"
+route = "*\\.language-trainer\\.pages\\.dev/*"
 workers_dev = true
 
 [env.production]
