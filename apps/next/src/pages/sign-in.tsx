@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { getUser, signIn } from 'src/utils/supabase';
@@ -8,13 +8,22 @@ export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessages, setErrorMessages] = useState('');
+
+  useEffect(() => {
+    if (email || password) {
+      setErrorMessages('');
+    }
+  }, [email, password]);
 
   async function handleEmailSignInWithPress(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     const { error } = await signIn(email, password);
 
     if (error) {
-      console.error(error.message);
+      setEmail('');
+      setPassword('');
+      setErrorMessages(error.message);
       return;
     }
     push('/');
@@ -71,7 +80,9 @@ export default function Login() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end">
+              {errorMessages && <div className=" text-red-400 !mt-2">{errorMessages}</div>}
+
+              {/* <div className="flex items-center justify-end">
                 <div className="text-sm leading-6">
                   <a
                     href="#"
@@ -80,7 +91,7 @@ export default function Login() {
                     Forgot password?
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 <button
