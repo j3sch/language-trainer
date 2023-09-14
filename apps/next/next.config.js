@@ -8,9 +8,6 @@ const disableBrowserLogs = boolVals[process.env.DISABLE_BROWSER_LOGS] ?? process
 module.exports = function () {
   /** @type {import('next').NextConfig} */
   let config = {
-    typescript: {
-      ignoreBuildErrors: true,
-    },
     experimental: {
       appDir: false,
       forceSwcTransforms: true,
