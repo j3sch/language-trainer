@@ -63,7 +63,7 @@ export default function TranslateInput(props: Props) {
         type="button"
         className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-lg font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-zinc-800/40 dark:hover:bg-zinc-700/40"
       >
-        Sumbit
+        Submit
       </button>
     </div>
   );
