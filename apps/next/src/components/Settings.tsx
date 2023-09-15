@@ -1,10 +1,6 @@
-import { ArrowRightOnRectangleIcon, ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
+import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
 import LanguageSelect from 'src/components/LanguageSelect';
-import TenseSelect from 'src/components/TenseSelect';
-import { signOut } from 'src/utils/supabase';
 import { useAnswerLanguage, useQuestionLanguage } from 'src/atoms/settings';
-import { useUser } from 'src/utils/supabase/auth';
-import { useRouter } from 'next/router';
 import { trpc } from 'src/utils/trpc';
 import { useCurrentTask } from 'src/atoms/currentTask';
 import { useEffect } from 'react';
@@ -60,7 +56,6 @@ export default function Settings() {
             />
           </div>
         </div>
-        {/* <TenseSelect /> */}
       </div>
     </div>
   );

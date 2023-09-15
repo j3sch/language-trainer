@@ -1,6 +1,5 @@
 import { type IHistory } from '../types';
-import { LightBulbIcon, StarIcon } from '@heroicons/react/24/outline';
-import PopoverInfo from './Popover';
+import { StarIcon } from '@heroicons/react/24/outline';
 import { trpc } from 'src/utils/trpc';
 import clsx from 'clsx';
 
@@ -33,9 +32,6 @@ export default function SolutionBox(props: Props) {
       <div className="flex-1 grow">
         <div className="space-y-2 flex flex-col p-3 pb-6 text-center ">
           <div className="flex w-full justify-end ">
-            {/* <PopoverInfo>
-          <LightBulbIcon className="h-10 w-10 rounded-md p-2 text-zinc-500 hover:border-white/10 hover:bg-white/5  dark:text-zinc-400" />
-        </PopoverInfo> */}
             <StarIcon
               onClick={onFavorite}
               className={clsx(

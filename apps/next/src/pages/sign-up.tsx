@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { trpc } from 'src/utils/trpc';
-import { signIn, signUp } from 'src/utils/supabase';
+import { signUp } from 'src/utils/supabase';
 import { MouseEvent } from 'react';
 
 export default function SignUp() {
@@ -103,7 +103,7 @@ export default function SignUp() {
           </div>
 
           <p className="mt-10 text-center text-sm text-zinc-500">
-            Already have an account?{' '}
+            Already have an account?
             <a
               href="sign-in"
               className="font-semibold leading-6 text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-500 hover:text-indigo-500"

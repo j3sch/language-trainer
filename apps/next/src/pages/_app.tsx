@@ -1,9 +1,7 @@
 import { AppProps } from 'next/app';
-
 import { trpc } from 'src/utils/trpc';
 import { createPagesBrowserClient, type Session } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
-
 import 'src/styles/globals.css';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';

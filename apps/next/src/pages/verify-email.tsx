@@ -1,6 +1,5 @@
 import { InboxArrowDownIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
-import Button from 'src/components/Button';
 
 export default function VerifyEmail() {
   const { query } = useRouter();

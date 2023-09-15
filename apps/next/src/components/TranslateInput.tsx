@@ -1,4 +1,4 @@
-import { useState, type KeyboardEvent, type MouseEvent } from 'react';
+import { useState, type KeyboardEvent } from 'react';
 import { useCurrentTask } from 'src/atoms/currentTask';
 import { usePreviousTask } from 'src/atoms/previousTask';
 import { trpc } from 'src/utils/trpc';

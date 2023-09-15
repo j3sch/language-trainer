@@ -1,12 +1,12 @@
-import { CounterClockwiseClockIcon, ExitIcon, HomeIcon, MoonIcon, StarIcon, SunIcon } from '@radix-ui/react-icons';
+import { CounterClockwiseClockIcon, ExitIcon, HomeIcon, StarIcon } from '@radix-ui/react-icons';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { getUser, signOut } from 'src/utils/supabase';
+import { signOut } from 'src/utils/supabase';
 import { useSupabaseUser } from 'src/atoms/auth';
 import { useRouter } from 'next/router';
-import { useTheme } from 'next-themes';
 import clsx from 'clsx';
-import { TNavigation, useNavigation } from 'src/atoms/navigation';
+import { useNavigation } from 'src/atoms/navigation';
 import { useUser } from 'src/utils/supabase/auth';
+import { TNavigation } from 'src/types/navigation';
 
 const pages: {
   name: string;
@@ -21,8 +21,7 @@ const pages: {
 export default function SidebarNavigation() {
   useUser();
   const [user] = useSupabaseUser();
-  const { push, pathname } = useRouter();
-  const { theme, setTheme } = useTheme();
+  const { push } = useRouter();
   const [navigation, setNavigation] = useNavigation();
 
   function onSignOut() {
@@ -71,22 +70,6 @@ export default function SidebarNavigation() {
               </li>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content className="border p-2 border-zinc-700 shadow w-52 flex flex-col rounded-md">
-              {/* <DropdownMenu.Item
-                onClick={() => (theme == 'dark' ? setTheme('light') : setTheme('dark'))}
-                className="py-1 px-3 h-10 flex flex-row items-center rounded-md text-zinc-500 hover:bg-white/5 dark:hover:bg-zinc-700/40  dark:bg-zinc-900 dark:text-zinc-300"
-              >
-                {theme == 'dark' ? (
-                  <div className="flex items-center space-x-3">
-                    <SunIcon />
-                    <span>Light Mode</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center">
-                    <MoonIcon />
-                    <span>Dark Mode</span>
-                  </div>
-                )}
-              </DropdownMenu.Item> */}
               <DropdownMenu.Item
                 className="py-1 px-3 h-10 focus:outline-none flex space-x-3 flex-row items-center rounded-md text-zinc-500 hover:bg-white/5 dark:hover:bg-zinc-700/40   dark:bg-zinc-900 dark:text-zinc-300"
                 onClick={onSignOut}
@@ -94,16 +77,6 @@ export default function SidebarNavigation() {
                 <ExitIcon />
                 <span>Logout</span>
               </DropdownMenu.Item>
-
-              {/* <div className="w-full">
-								<button
-									onClick={}
-									className="items-center h-10 flex flex-row space-x-2 rounded-md  pl-3 p-2 text-zinc-500 hover:bg-white/5 dark:hover:bg-zinc-700/40  dark:bg-zinc-800/40 dark:text-zinc-400"
-								>
-									<span>Logout</span>
-									<ArrowRightOnRectangleIcon className="h-10 py-2" />
-								</button>
-							</div> */}
             </DropdownMenu.Content>
           </DropdownMenu.Root>
         </ul>

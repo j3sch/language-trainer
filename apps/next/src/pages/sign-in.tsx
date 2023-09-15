@@ -1,7 +1,7 @@
 import { MouseEvent, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { getUser, signIn } from 'src/utils/supabase';
+import { signIn } from 'src/utils/supabase';
 
 export default function Login() {
   const { push } = useRouter();
@@ -81,17 +81,6 @@ export default function Login() {
               </div>
 
               {errorMessages && <div className=" text-red-400 !mt-2">{errorMessages}</div>}
-
-              {/* <div className="flex items-center justify-end">
-                <div className="text-sm leading-6">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-500 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-              </div> */}
 
               <div>
                 <button

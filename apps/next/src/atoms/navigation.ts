@@ -1,6 +1,5 @@
 import { atom, useAtom } from 'jotai';
-
-export type TNavigation = 'learning' | 'history' | 'favorites';
+import { TNavigation } from 'src/types/navigation';
 
 const navigationAtom = atom<TNavigation>('learning');
 
