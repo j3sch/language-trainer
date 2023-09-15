@@ -8,11 +8,11 @@ export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessages, setErrorMessages] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (email || password) {
-      setErrorMessages('');
+      setErrorMessage('');
     }
   }, [email, password]);
 
@@ -23,7 +23,7 @@ export default function Login() {
     if (error) {
       setEmail('');
       setPassword('');
-      setErrorMessages(error.message);
+      setErrorMessage(error.message);
       return;
     }
     push('/');
@@ -80,7 +80,7 @@ export default function Login() {
                 </div>
               </div>
 
-              {errorMessages && <div className=" text-red-400 !mt-2">{errorMessages}</div>}
+              {errorMessage && <div className=" text-red-400 !mt-2">{errorMessage}</div>}
 
               <div>
                 <button

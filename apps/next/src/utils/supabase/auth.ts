@@ -22,15 +22,12 @@ const signInWithOAuth = async (credentials: SignInWithOAuthCredentials) => {
 };
 
 const signUp = async (email: string, password: string) => {
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
   });
 
-  return { user, error };
+  return { data, error };
 };
 
 const signOut = async () => {

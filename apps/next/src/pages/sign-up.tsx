@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { trpc } from 'src/utils/trpc';
 import { signUp } from 'src/utils/supabase';
 import { MouseEvent } from 'react';
+
+const USER_ALREADY_REGISTERED = 'User already registered';
 
 export default function SignUp() {
   const { push } = useRouter();
@@ -10,10 +12,28 @@ export default function SignUp() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (email || password) {
+      setErrorMessage('');
+    }
+  }, [email, password]);
 
   async function handleEmailSignInWithPress(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    const { user, error } = await signUp(email, password);
+    const { data, error } = await signUp(email, password);
+
+    if (error) {
+      console.error(error.message);
+    } else if (data.user?.identities?.length === 0) {
+      setErrorMessage(USER_ALREADY_REGISTERED);
+      setEmail('');
+      setPassword('');
+      return;
+    }
+
+    const { user } = data;
 
     if (!user?.email) return;
 
@@ -23,7 +43,7 @@ export default function SignUp() {
         id: user.id,
       },
       {
-        onSuccess: (res: any) => {
+        onSuccess: () => {
           push({
             pathname: '/verify-email',
             query: { email },
@@ -31,12 +51,6 @@ export default function SignUp() {
         },
       },
     );
-
-    if (error) {
-      console.error(error);
-
-      return;
-    }
   }
 
   return (
@@ -90,6 +104,8 @@ export default function SignUp() {
                 </div>
               </div>
 
+              {errorMessage && <div className=" text-red-400 !mt-2">{errorMessage}</div>}
+
               <div>
                 <button
                   type="submit"
@@ -103,7 +119,7 @@ export default function SignUp() {
           </div>
 
           <p className="mt-10 text-center text-sm text-zinc-500">
-            Already have an account?
+            Already have an account?{' '}
             <a
               href="sign-in"
               className="font-semibold leading-6 text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-500 hover:text-indigo-500"
