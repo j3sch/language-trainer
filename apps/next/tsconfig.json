@@ -4,7 +4,6 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "app/*": ["../../packages/app/*"],
       "api/*": ["../../packages/api/*"]
     },
     "allowJs": true,
