@@ -22,6 +22,11 @@ export default function SignUp() {
 
   async function handleEmailSignInWithPress(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    if (password.length < 8) {
+      setErrorMessage('Password must be at least 8 characters long');
+      return;
+    }
+
     const { data, error } = await signUp(email, password);
 
     if (error) {
