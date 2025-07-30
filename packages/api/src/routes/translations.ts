@@ -2,7 +2,7 @@ import tranlations from '../data/translations.json';
 import { router, protectedProcedure, publicProcedure } from '../trpc';
 import { LANGUAGES } from '../types/languages';
 import { z } from 'zod';
-import { completedTasks } from '../db/schema';
+import { CompletedTasks, Words, completedTasks, words } from '../db/schema';
 import { eq, sql } from 'drizzle-orm';
 import { checkAnswerAndMark } from '../utils/checkAnswerAndMark';
 import { getMostSimilarSentence } from '../utils/getMostSimilarSentence';
@@ -38,7 +38,16 @@ export const translationsRouter = router({
           percentage,
         };
 
-        return await db.insert(completedTasks).values(newHistory).returning().get();
+        const insertedTask = await db.insert(completedTasks).values(newHistory).returning().get();
+
+        const wordsValues = markedAnswer.map((word) => ({ ...word, completedTasks_id: insertedTask!.id }));
+
+        const insertedWords = await db.insert(words).values(wordsValues).returning().all();
+
+        return {
+          ...insertedTask,
+          answer: insertedWords,
+        };
       } catch (e) {
         console.log('Insert Failed', e);
         return null;

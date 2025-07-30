@@ -21,12 +21,12 @@ export function checkAnswerAndMark(answer: string, solution: string) {
 
   while (i > 0 && j > 0) {
     if (answerWords[i - 1] === solutionWords[j - 1]) {
-      markedAnswer.unshift(`<span style="color:green">${answerWords[i - 1]}</span>`);
+      markedAnswer.unshift({ word: answerWords[i - 1], color: 'green' });
       correctWords++;
       i--;
       j--;
     } else if (dp[i - 1][j] >= dp[i][j - 1]) {
-      markedAnswer.unshift(`<span style="color:red">${answerWords[i - 1]}</span>`);
+      markedAnswer.unshift({ word: answerWords[i - 1], color: 'red' });
       i--;
     } else {
       j--;
@@ -34,14 +34,14 @@ export function checkAnswerAndMark(answer: string, solution: string) {
   }
 
   while (i > 0) {
-    markedAnswer.unshift(`<span style="color:red">${answerWords[i - 1]}</span>`);
+    markedAnswer.unshift({ word: answerWords[i - 1], color: 'red' });
     i--;
   }
 
   const percentage = parseFloat(((correctWords / answerWords.length) * 100).toFixed(1));
 
   return {
-    markedAnswer: markedAnswer.join(''),
+    markedAnswer: markedAnswer,
     percentage,
   };
 }
